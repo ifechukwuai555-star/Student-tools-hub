@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Exam Countdown | Student Tools Hub</title>
+  <meta
+    name="description"
+    content="Use the free Exam Countdown tool to count down to your next exam with live days, hours, minutes, and seconds."
+  >
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="../index.html">Student Tools Hub</a>
+
+      <nav aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#tools">Calculators</a>
+        <a href="../index.html#study-tools">Study Tools</a>
+        <a href="../about.html">About</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="page-hero">
+      <div class="container">
+        <p class="eyebrow">STUDY TOOL</p>
+        <h1>Exam Countdown</h1>
+        <p>
+          Set your exam date and time and see a live countdown showing
+          exactly how much time is left.
+        </p>
+      </div>
+    </section>
+
+    <section class="container content-section">
+      <div class="calculator-card">
+        <h2>Set your exam date</h2>
+
+        <div class="form-grid">
+          <label>
+            Exam date
+            <input id="exam-date" type="date">
+          </label>
+
+          <label>
+            Exam time
+            <input id="exam-time" type="time">
+          </label>
+        </div>
+
+        <div class="button-row">
+          <button id="start-countdown" class="button primary" type="button">
+            Start Countdown
+          </button>
+
+          <button id="reset" class="button secondary" type="button">
+            Reset
+          </button>
+        </div>
+
+        <div id="error" class="error-message" role="alert" hidden></div>
+
+        <div id="countdown-result" class="result-card" hidden>
+          <p class="result-label">Time remaining</p>
+
+          <div class="countdown-grid" aria-live="polite">
+            <div class="countdown-item">
+              <strong id="days">0</strong>
+              <span>Days</span>
+            </div>
+
+            <div class="countdown-item">
+              <strong id="hours">0</strong>
+              <span>Hours</span>
+            </div>
+
+            <div class="countdown-item">
+              <strong id="minutes">0</strong>
+              <span>Minutes</span>
+            </div>
+
+            <div class="countdown-item">
+              <strong id="seconds">0</strong>
+              <span>Seconds</span>
+            </div>
+          </div>
+
+          <p id="countdown-status" class="result-description"></p>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h2>How it works</h2>
+        <p>
+          Choose your exam date and time, then select Start Countdown.
+          The timer uses your device's local time and updates every second.
+        </p>
+        <p>
+          If the exam time has already passed, the countdown will show that
+          the exam has passed instead of displaying negative values.
+        </p>
+      </div>
+
+      <div class="faq-section">
+        <h2>Frequently Asked Questions</h2>
+
+        <details>
+          <summary>Does the countdown update automatically?</summary>
+          <p>
+            Yes. Once started, the countdown updates every second while the
+            page is open.
+          </p>
+        </details>
+
+        <details>
+          <summary>Which time zone does it use?</summary>
+          <p>
+            It uses the local date and time configured on your device.
+          </p>
+        </details>
+
+        <details>
+          <summary>What happens when the exam time arrives?</summary>
+          <p>
+            The timer stops at zero and displays a message that the exam
+            time has arrived.
+          </p>
+        </details>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-wrap">
+      <p>© 2026 Student Tools Hub</p>
+
+      <div>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms</a>
+      </div>
+    </div>
+  </footer>
+
+  <script type="module" src="../js/countdown.js"></script>
+</body>
+</html>
