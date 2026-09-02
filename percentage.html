@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Percentage Calculator | Student Tools Hub</title>
+  <meta
+    name="description"
+    content="Calculate percentages, percentage of a value, and percentage change quickly and accurately."
+  >
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+
+    <a class="brand" href="../index.html">
+      Student Tools Hub
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#calculators">Calculators</a>
+      <a href="../index.html#study-tools">Study Tools</a>
+      <a href="../about.html">About</a>
+    </nav>
+
+  </div>
+</header>
+
+<main class="tool-page">
+
+  <div class="container">
+
+    <a class="back-home" href="../index.html">
+      ← Back to Student Tools Hub
+    </a>
+
+    <header class="tool-header">
+
+      <h1>Percentage Calculator</h1>
+
+      <p>
+        Calculate percentages, find a percentage of a value,
+        and calculate percentage change.
+      </p>
+
+    </header>
+
+    <section class="tool-panel">
+
+      <h2>1. What percentage is one value of another?</h2>
+
+      <p class="muted">
+        Enter a value and the total.
+      </p>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="basic-value">Value</label>
+
+          <input
+            id="basic-value"
+            type="number"
+            step="any"
+            inputmode="decimal"
+            placeholder="e.g. 45"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="basic-total">Total</label>
+
+          <input
+            id="basic-total"
+            type="number"
+            step="any"
+            inputmode="decimal"
+            placeholder="e.g. 60"
+          >
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+
+        <button
+          type="button"
+          class="button"
+          id="calculate-basic"
+        >
+          Calculate Percentage
+        </button>
+
+      </div>
+
+      <hr style="margin: 35px 0; border: 0; border-top: 1px solid var(--border);">
+
+      <h2>2. What is a percentage of a value?</h2>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="percentage">Percentage (%)</label>
+
+          <input
+            id="percentage"
+            type="number"
+            step="any"
+            inputmode="decimal"
+            placeholder="e.g. 20"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="percentage-value">Value</label>
+
+          <input
+            id="percentage-value"
+            type="number"
+            step="any"
+            inputmode="decimal"
+            placeholder="e.g. 500"
+          >
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+
+        <button
+          type="button"
+          class="button"
+          id="calculate-of-value"
+        >
+          Calculate
+        </button>
+
+      </div>
+
+      <hr style="margin: 35px 0; border: 0; border-top: 1px solid var(--border);">
+
+      <h2>3. Percentage change</h2>
+
+      <div class="form-grid">
+
+        <div class="form-group">
+          <label for="old-value">Original Value</label>
+
+          <input
+            id="old-value"
+            type="number"
+            step="any"
+            inputmode="decimal"
+            placeholder="e.g. 100"
+          >
+        </div>
+
+        <div class="form-group">
+          <label for="new-value">New Value</label>
+
+          <input
+            id="new-value"
+            type="number"
+            step="any"
+            inputmode="decimal"
+            placeholder="e.g. 120"
+          >
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+
+        <button
+          type="button"
+          class="button"
+          id="calculate-change"
+        >
+          Calculate Change
+        </button>
+
+        <button
+          type="button"
+          class="button secondary"
+          id="reset"
+        >
+          Reset
+        </button>
+
+      </div>
+
+      <div
+        id="error"
+        class="error"
+        role="alert"
+        hidden
+      ></div>
+
+      <div
+        id="result"
+        class="result"
+        aria-live="polite"
+        hidden
+      >
+
+        <div class="muted">
+          Result
+        </div>
+
+        <div
+          id="percentage-result"
+          class="result-value"
+        >
+          0.00
+        </div>
+
+      </div>
+
+    </section>
+
+    <section class="info-box">
+
+      <h2>How percentage calculations work</h2
