@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CGPA Calculator | Student Tools Hub</title>
+  <meta
+    name="description"
+    content="Calculate your CGPA using a 5-point grading scale with course credit units and grades."
+  >
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+
+    <a class="brand" href="../index.html">
+      Student Tools Hub
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#calculators">Calculators</a>
+      <a href="../index.html#study-tools">Study Tools</a>
+      <a href="../about.html">About</a>
+    </nav>
+
+  </div>
+</header>
+
+<main class="tool-page">
+  <div class="container">
+
+    <a class="back-home" href="../index.html">
+      ← Back to Student Tools Hub
+    </a>
+
+    <header class="tool-header">
+      <h1>CGPA Calculator</h1>
+
+      <p>
+        Calculate your cumulative grade point average using
+        course grades and credit units.
+      </p>
+    </header>
+
+    <section class="tool-panel" aria-labelledby="calculator-heading">
+
+      <h2 id="calculator-heading">Enter your courses</h2>
+
+      <p class="muted">
+        The default grading scale is the common 5-point scale:
+        A = 5, B = 4, C = 3, D = 2, E = 1, F = 0.
+      </p>
+
+      <div class="table-wrapper">
+
+        <table>
+          <thead>
+            <tr>
+              <th>Course</th>
+              <th>Credit Units</th>
+              <th>Grade</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody id="course-rows"></tbody>
+        </table>
+
+      </div>
+
+      <div class="form-actions">
+
+        <button
+          type="button"
+          class="button secondary"
+          id="add-course"
+        >
+          + Add Course
+        </button>
+
+        <button
+          type="button"
+          class="button"
+          id="calculate"
+        >
+          Calculate CGPA
+        </button>
+
+        <button
+          type="button"
+          class="button secondary"
+          id="reset"
+        >
+          Reset
+        </button>
+
+      </div>
+
+      <div
+        id="error"
+        class="error"
+        role="alert"
+        hidden
+      ></div>
+
+      <div
+        id="result"
+        class="result"
+        aria-live="polite"
+        hidden
+      >
+
+        <div class="muted">Your CGPA</div>
+
+        <div
+          id="cgpa-value"
+          class="result-value"
+        >
+          0.00
+        </div>
+
+        <div
+          id="unit-summary"
+          class="muted"
+        ></div>
+
+      </div>
+
+    </section>
+
+    <section class="info-box">
+
+      <h2>How the CGPA calculation works</h2>
+
+      <p>
+        Each course contributes points based on its grade and
+        credit units.
+      </p>
+
+      <p>
+        <strong>CGPA = Total Quality Points ÷ Total Credit Units</strong>
+      </p>
+
+      <p>
+        For example, a 3-unit course with an A contributes
+        3 × 5 = 15 quality points.
+      </p>
+
+    </section>
+
+    <section class="faq">
+
+      <h2>Frequently Asked Questions</h2>
+
+      <details>
+        <summary>What grading scale does this calculator use?</summary>
+
+        <p>
+          It uses a 5-point scale by default:
+          A = 5, B = 4, C = 3, D = 2, E = 1 and F = 0.
+        </p>
+      </details>
+
+      <details>
+        <summary>Can I add multiple courses?</summary>
+
+        <p>
+          Yes. Use the Add Course button to add as many
+          courses as you need.
+        </p>
+      </details>
+
+      <details>
+        <summary>Does credit unit affect CGPA?</summary>
+
+        <p>
+          Yes. Courses with more credit units have a larger
+          effect on the calculated result.
+        </p>
+      </details>
+
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+
+  <div class="container">
+
+    <div class="footer-inner">
+
+      <div>
+        <div class="footer-brand">
+          Student Tools Hub
+        </div>
+
+        <p class="footer-text">
+          Free, simple calculators and study tools for
+          students.
+        </p>
+      </div>
+
+      <div class="footer-links">
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Use</a>
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Student Tools Hub. All rights reserved.
+    </div>
+
+  </div>
+
+</footer>
+
+<script type="module" src="../js/cgpa.js"></script>
+
+</body>
+</html>
