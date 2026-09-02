@@ -1,0 +1,20 @@
+{
+  "name": "student-tools-hub",
+  "version": "1.0.0",
+  "description": "Free, simple calculators and study tools for students.",
+  "type": "module",
+  "scripts": {
+    "test": "node tests/test-calculations.mjs"
+  },
+  "keywords": [
+    "student",
+    "calculator",
+    "cgpa",
+    "gpa",
+    "percentage",
+    "grade",
+    "exam",
+    "date"
+  ],
+  "license": "MIT"
+}
