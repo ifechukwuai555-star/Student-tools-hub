@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Grade Calculator | Student Tools Hub</title>
+  <meta
+    name="description"
+    content="Convert a score from 0 to 100 into a grade using an editable grading scale."
+  >
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+
+    <a class="brand" href="../index.html">
+      Student Tools Hub
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#calculators">Calculators</a>
+      <a href="../index.html#study-tools">Study Tools</a>
+      <a href="../about.html">About</a>
+    </nav>
+
+  </div>
+</header>
+
+<main class="tool-page">
+
+  <div class="container">
+
+    <a class="back-home" href="../index.html">
+      ← Back to Student Tools Hub
+    </a>
+
+    <header class="tool-header">
+
+      <h1>Grade Calculator</h1>
+
+      <p>
+        Enter a score from 0 to 100 and find its grade.
+        You can also edit the grading scale.
+      </p>
+
+    </header>
+
+    <section class="tool-panel">
+
+      <h2>Enter your score</h2>
+
+      <div class="form-group">
+
+        <label for="score">
+          Score (0–100)
+        </label>
+
+        <input
+          id="score"
+          type="number"
+          min="0"
+          max="100"
+          step="any"
+          inputmode="decimal"
+          placeholder="e.g. 78"
+        >
+
+      </div>
+
+      <div class="form-actions">
+
+        <button
+          type="button"
+          class="button"
+          id="calculate"
+        >
+          Calculate Grade
+        </button>
+
+      </div>
+
+      <hr style="margin: 35px 0; border: 0; border-top: 1px solid var(--border);">
+
+      <h2>Grading Scale</h2>
+
+      <p class="muted">
+        Each minimum score determines when that grade starts.
+        The scale is editable.
+      </p>
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Grade</th>
+              <th>Minimum Score</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody id="scale-rows"></tbody>
+
+        </table>
+
+      </div>
+
+      <div class="form-actions">
+
+        <button
+          type="button"
+          class="button secondary"
+          id="add-grade"
+        >
+          + Add Grade
+        </button>
+
+        <button
+          type="button"
+          class="button secondary"
+          id="reset-scale"
+        >
+          Reset Scale
+        </button>
+
+      </div>
+
+      <div
+        id="error"
+        class="error"
+        role="alert"
+        hidden
+      ></div>
+
+      <div
+        id="result"
+        class="result"
+        aria-live="polite"
+        hidden
+      >
+
+        <div class="muted">
+          Your Grade
+        </div>
+
+        <div
+          id="grade-result"
+          class="result-value"
+        >
+          —
+        </div>
+
+        <div
+          id="score-summary"
+          class="muted"
+        ></div>
+
+      </div>
+
+    </section>
+
+    <section class="info-box">
+
+      <h2>How it works</h2>
+
+      <p>
+        The calculator compares your score with the minimum
+        score for each grade, starting with the highest
+        threshold.
+      </p>
+
+      <p>
+        The default scale is:
+        A = 70–100, B = 60–69, C = 50–59,
+        D = 45–49, E = 40–44, F = 0–39.
+      </p>
+
+      <p>
+        You can edit the minimum scores or grade labels to
+        match another grading system.
+      </p>
+
+    </section>
+
+    <section class="faq">
+
+      <h2>Frequently Asked Questions</h2>
+
+      <details>
+        <summary>
+          What score range does the calculator accept?
+        </summary>
+
+        <p>
+          Scores from 0 through 100 are accepted.
+        </p>
+      </details>
+
+      <details>
+        <summary>
+          Can I change the grading scale?
+        </summary>
+
+        <p>
+          Yes. Edit the grade labels and minimum scores in
+          the grading scale table.
+        </p>
+      </details>
+
+      <details>
+        <summary>
+          What happens if two grades have the same minimum?
+        </summary>
+
+        <p>
+          The calculator will show an error and ask you to
+          use different minimum scores.
+        </p>
+      </details>
+
+    </section>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+
+  <div class="container">
+
+    <div class="footer-inner">
+
+      <div>
+
+        <div class="footer-brand">
+          Student Tools Hub
+        </div>
+
+        <p class="footer-text">
+          Free, simple calculators and study tools for
+          students.
+        </p>
+
+      </div>
+
+      <div class="footer-links">
+
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Use</a>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Student Tools Hub. All rights reserved.
+    </div>
+
+  </div>
+
+</footer>
+
+<script type="module" src="../js/grade.js"></script>
+
+</body>
+</html>
