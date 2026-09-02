@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Contact Student Tools Hub</title>
+
+  <meta
+    name="description"
+    content="Contact Student Tools Hub with questions, feedback, or suggestions about our student calculators and study tools."
+  >
+
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+
+      <a class="brand" href="index.html">
+        Student Tools Hub
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a href="index.html">Home</a>
+        <a href="index.html#tools">Calculators</a>
+        <a href="index.html#study-tools">Study Tools</a>
+        <a href="about.html">About</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+
+        <p class="eyebrow">CONTACT</p>
+
+        <h1>Contact Student Tools Hub</h1>
+
+        <p>
+          Have feedback, a question, or a suggestion? We'd love to hear from
+          you.
+        </p>
+
+      </div>
+    </section>
+
+
+    <section class="container content-section">
+
+      <div class="calculator-card">
+
+        <h2>Send us a message</h2>
+
+        <form id="contact-form">
+
+          <label>
+            Name
+            <input
+              id="name"
+              type="text"
+              name="name"
+              autocomplete="name"
+              required
+              placeholder="Your name"
+            >
+          </label>
+
+          <label>
+            Email
+            <input
+              id="email"
+              type="email"
+              name="email"
+              autocomplete="email"
+              required
+              placeholder="you@example.com"
+            >
+          </label>
+
+          <label>
+            Message
+            <textarea
+              id="message"
+              name="message"
+              rows="6"
+              required
+              placeholder="Write your message..."
+            ></textarea>
+          </label>
+
+          <button
+            class="button primary"
+            type="submit"
+          >
+            Send Message
+          </button>
+
+        </form>
+
+        <div
+          id="contact-status"
+          class="info-card"
+          role="status"
+          hidden
+        ></div>
+
+      </div>
+
+
+      <div class="info-card">
+
+        <h2>Feedback</h2>
+
+        <p>
+          Your feedback can help us improve the calculators and study tools
+          on Student Tools Hub.
+        </p>
+
+        <p>
+          Please include enough information about the problem or suggestion
+          so it can be understood clearly.
+        </p>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer">
+
+    <div class="container footer-wrap">
+
+      <p>© 2026 Student Tools Hub</p>
+
+      <div>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms</a>
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script>
+    const form = document.querySelector("#contact-form");
+    const status = document.querySelector("#contact-status");
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      status.textContent =
+        "Thanks for your message. The contact form is ready to be connected to an email service or backend.";
+
+      status.hidden = false;
+
+      form.reset();
+    });
+  </script>
+
+</body>
+</html>
