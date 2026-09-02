@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Date Calculator | Student Tools Hub</title>
+
+  <meta
+    name="description"
+    content="Use the free Date Calculator to calculate the difference between dates or add and subtract days from a date."
+  >
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+
+      <a class="brand" href="../index.html">
+        Student Tools Hub
+      </a>
+
+      <nav aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#tools">Calculators</a>
+        <a href="../index.html#study-tools">Study Tools</a>
+        <a href="../about.html">About</a>
+      </nav>
+
+    </div>
+  </header>
+
+  <main>
+
+    <section class="page-hero">
+      <div class="container">
+
+        <p class="eyebrow">STUDY TOOL</p>
+
+        <h1>Date Calculator</h1>
+
+        <p>
+          Calculate the number of days between two dates or find a new date
+          by adding or subtracting days.
+        </p>
+
+      </div>
+    </section>
+
+    <section class="container content-section">
+
+      <div class="calculator-card">
+
+        <h2>Difference Between Dates</h2>
+
+        <div class="form-grid">
+
+          <label>
+            Start date
+            <input id="start-date" type="date">
+          </label>
+
+          <label>
+            End date
+            <input id="end-date" type="date">
+          </label>
+
+        </div>
+
+        <button
+          id="calculate-difference"
+          class="button primary"
+          type="button"
+        >
+          Calculate Difference
+        </button>
+
+        <div
+          id="difference-result"
+          class="result-card"
+          hidden
+        >
+          <p class="result-label">Difference</p>
+
+          <strong id="difference-value">0</strong>
+
+          <p>days</p>
+        </div>
+
+      </div>
+
+
+      <div class="calculator-card">
+
+        <h2>Add or Subtract Days</h2>
+
+        <div class="form-grid">
+
+          <label>
+            Starting date
+            <input id="base-date" type="date">
+          </label>
+
+          <label>
+            Number of days
+            <input
+              id="days"
+              type="number"
+              step="1"
+              inputmode="numeric"
+              placeholder="30"
+            >
+          </label>
+
+        </div>
+
+        <p class="form-help">
+          Use a positive number to add days or a negative number to subtract
+          days.
+        </p>
+
+        <button
+          id="calculate-date"
+          class="button primary"
+          type="button"
+        >
+          Calculate Date
+        </button>
+
+        <div
+          id="date-result"
+          class="result-card"
+          hidden
+        >
+          <p class="result-label">New date</p>
+
+          <strong id="new-date">—</strong>
+        </div>
+
+      </div>
+
+
+      <div
+        id="error"
+        class="error-message"
+        role="alert"
+        hidden
+      ></div>
+
+
+      <div class="button-row">
+
+        <button
+          id="reset"
+          class="button secondary"
+          type="button"
+        >
+          Reset
+        </button>
+
+      </div>
+
+
+      <div class="info-card">
+
+        <h2>How it works</h2>
+
+        <p>
+          The Date Calculator uses calendar dates to calculate the exact
+          number of days between two dates.
+        </p>
+
+        <p>
+          You can also enter a starting date and a whole number of days.
+          Positive numbers move forward, while negative numbers move
+          backward.
+        </p>
+
+        <p>
+          The calculator correctly handles different month lengths and leap
+          years.
+        </p>
+
+      </div>
+
+
+      <div class="faq-section">
+
+        <h2>Frequently Asked Questions</h2>
+
+        <details>
+          <summary>
+            Does the calculator handle leap years?
+          </summary>
+
+          <p>
+            Yes. The calculator uses real calendar dates, including leap
+            years.
+          </p>
+        </details>
+
+        <details>
+          <summary>
+            Can I subtract days?
+          </summary>
+
+          <p>
+            Yes. Enter a negative number of days to move backward from the
+            starting date.
+          </p>
+        </details>
+
+        <details>
+          <summary>
+            Can I calculate the number of days between dates?
+          </summary>
+
+          <p>
+            Yes. Enter the start and end dates in the first section and
+            select Calculate Difference.
+          </p>
+        </details>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer">
+
+    <div class="container footer-wrap">
+
+      <p>© 2026 Student Tools Hub</p>
+
+      <div>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms</a>
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script
+    type="module"
+    src="../js/date-calculator.js"
+  ></script>
+
+</body>
+              </html>
