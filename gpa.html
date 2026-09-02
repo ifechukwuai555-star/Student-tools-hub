@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>GPA Calculator | Student Tools Hub</title>
+  <meta
+    name="description"
+    content="Calculate your semester or study-period GPA using course grades and credit units."
+  >
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="container header-inner">
+
+    <a class="brand" href="../index.html">
+      Student Tools Hub
+    </a>
+
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="../index.html">Home</a>
+      <a href="../index.html#calculators">Calculators</a>
+      <a href="../index.html#study-tools">Study Tools</a>
+      <a href="../about.html">About</a>
+    </nav>
+
+  </div>
+</header>
+
+<main class="tool-page">
+
+  <div class="container">
+
+    <a class="back-home" href="../index.html">
+      ← Back to Student Tools Hub
+    </a>
+
+    <header class="tool-header">
+
+      <h1>GPA Calculator</h1>
+
+      <p>
+        Calculate your GPA for a semester or other study period
+        using course grades and credit units.
+      </p>
+
+    </header>
+
+    <section class="tool-panel">
+
+      <h2>Enter your courses</h2>
+
+      <p class="muted">
+        The default grading scale is:
+        A = 5, B = 4, C = 3, D = 2, E = 1, F = 0.
+      </p>
+
+      <div class="table-wrapper">
+
+        <table>
+
+          <thead>
+            <tr>
+              <th>Course</th>
+              <th>Credit Units</th>
+              <th>Grade</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody id="course-rows"></tbody>
+
+        </table>
+
+      </div>
+
+      <div class="form-actions">
+
+        <button
+          type="button"
+          class="button secondary"
+          id="add-course"
+        >
+          + Add Course
+        </button>
+
+        <button
+          type="button"
+          class="button"
+          id="calculate"
+        >
+          Calculate GPA
+        </button>
+
+        <button
+          type="button"
+          class="button secondary"
+          id="reset"
+        >
+          Reset
+        </button>
+
+      </div>
+
+      <div
+        id="error"
+        class="error"
+        role="alert"
+        hidden
+      ></div>
+
+      <div
+        id="result"
+        class="result"
+        aria-live="polite"
+        hidden
+      >
+
+        <div class="muted">
+          Your GPA
+        </div>
+
+        <div
+          id="gpa-value"
+          class="result-value"
+        >
+          0.00
+        </div>
+
+        <div
+          id="unit-summary"
+          class="muted"
+        ></div>
+
+      </div>
+
+    </section>
+
+    <section class="info-box">
+
+      <h2>How the GPA calculation works</h2>
+
+      <p>
+        GPA is calculated by multiplying each course's grade
+        point by its credit units, adding the quality points,
+        and dividing by the total credit units.
+      </p>
+
+      <p>
+        <strong>
+          GPA = Total Quality Points ÷ Total Credit Units
+        </strong>
+      </p>
+
+      <p>
+        GPA normally represents a specific semester or study
+        period, while CGPA represents the cumulative result
+        across multiple periods.
+      </p>
+
+    </section>
+
+    <section class="faq">
+
+      <h2>Frequently Asked Questions</h2>
+
+      <details>
+        <summary>
+          What grading scale does this calculator use?
+        </summary>
+
+        <p>
+          It uses the 5-point scale:
+          A = 5, B = 4, C = 3, D = 2, E = 1 and F = 0.
+        </p>
+      </details>
+
+      <details>
+        <summary>
+          What is the difference between GPA and CGPA?
+        </summary>
+
+        <p>
+          GPA usually represents one semester or study period.
+          CGPA represents your cumulative performance across
+          multiple periods.
+        </p>
+      </details>
+
+      <details>
+        <summary>
+          Can I add more courses?
+        </summary>
+
+        <p>
+          Yes. Tap Add Course to add additional courses before
+          calculating your GPA.
+        </p>
+      </details>
+
+    </section>
+
+  </div>
+
+</main>
+
+<footer class="site-footer">
+
+  <div class="container">
+
+    <div class="footer-inner">
+
+      <div>
+
+        <div class="footer-brand">
+          Student Tools Hub
+        </div>
+
+        <p class="footer-text">
+          Free, simple calculators and study tools for
+          students.
+        </p>
+
+      </div>
+
+      <div class="footer-links">
+
+        <a href="../index.html">Home</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms of Use</a>
+
+      </div>
+
+    </div>
+
+    <div class="footer-bottom">
+      © 2026 Student Tools Hub. All rights reserved.
+    </div>
+
+  </div>
+
+</footer>
+
+<script type="module" src="../js/gpa.js"></script>
+
+</body>
+</html>
