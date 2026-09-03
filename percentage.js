@@ -1,135 +1,148 @@
-import {
-  calculateBasicPercentage,
-  calculatePercentageOfValue,
-  calculatePercentageChange
-} from "./calculations.js";
+const valueInput = document.getElementById("value");
+const totalInput = document.getElementById("total");
+const calculatePercentageButton = document.getElementById("calculate-percentage");
+const percentageResult = document.getElementById("percentage-result");
+const percentageValue = document.getElementById("percentage-value");
 
-const error = document.querySelector("#error");
-const result = document.querySelector("#result");
-const resultValue = document.querySelector("#percentage-result");
+const percentInput = document.getElementById("percent");
+const numberInput = document.getElementById("number");
+const calculateOfButton = document.getElementById("calculate-of");
+const ofResult = document.getElementById("of-result");
+const ofValue = document.getElementById("of-value");
 
-function showResult(value, suffix = "") {
-  resultValue.textContent =
-    `${Number(value).toFixed(2)}${suffix}`;
+const oldValueInput = document.getElementById("old-value");
+const newValueInput = document.getElementById("new-value");
+const calculateChangeButton = document.getElementById("calculate-change");
+const changeResult = document.getElementById("change-result");
+const changeValue = document.getElementById("change-value");
 
-  result.hidden = false;
-  error.hidden = true;
-  error.textContent = "";
-}
+const errorBox = document.getElementById("error");
+const resetButton = document.getElementById("reset");
 
 function showError(message) {
-  error.textContent = message;
-  error.hidden = false;
-  result.hidden = true;
+  errorBox.textContent = message;
+  errorBox.hidden = false;
 }
 
-function calculateBasic() {
-  try {
-    const value =
-      document.querySelector("#basic-value").value;
+function clearError() {
+  errorBox.textContent = "";
+  errorBox.hidden = true;
+}
 
-    const total =
-      document.querySelector("#basic-total").value;
+function validNumber(input) {
+  return input.value.trim() !== "" && Number.isFinite(Number(input.value));
+}
 
-    const percentage =
-      calculateBasicPercentage(value, total);
+/* -------------------------------
+   VALUE AS PERCENTAGE OF TOTAL
+-------------------------------- */
 
-    showResult(percentage, "%");
+calculatePercentageButton.addEventListener("click", () => {
+  clearError();
+  percentageResult.hidden = true;
 
-  } catch (err) {
-    showError(
-      err.message || "Please enter valid numbers."
-    );
+  if (!validNumber(valueInput) || !validNumber(totalInput)) {
+    showError("Please enter valid numbers for the value and total.");
+    return;
   }
-}
 
-function calculateOfValue() {
-  try {
-    const percentage =
-      document.querySelector("#percentage").value;
+  const value = Number(valueInput.value);
+  const total = Number(totalInput.value);
 
-    const value =
-      document.querySelector("#percentage-value").value;
-
-    const answer =
-      calculatePercentageOfValue(
-        percentage,
-        value
-      );
-
-    showResult(answer);
-
-  } catch (err) {
-    showError(
-      err.message || "Please enter valid numbers."
-    );
+  if (total === 0) {
+    showError("The total cannot be zero.");
+    return;
   }
-}
 
-function calculateChange() {
-  try {
-    const oldValue =
-      document.querySelector("#old-value").value;
+  const percentage = (value / total) * 100;
 
-    const newValue =
-      document.querySelector("#new-value").value;
+  percentageValue.textContent = `${percentage.toFixed(2)}%`;
+  percentageResult.hidden = false;
+});
 
-    const change =
-      calculatePercentageChange(
-        oldValue,
-        newValue
-      );
 
-    const sign = change > 0 ? "+" : "";
+/* -------------------------------
+   PERCENTAGE OF A VALUE
+-------------------------------- */
 
-    showResult(
-      change,
-      `% ${sign ? sign : ""}`
-    );
+calculateOfButton.addEventListener("click", () => {
+  clearError();
+  ofResult.hidden = true;
 
-  } catch (err) {
-    showError(
-      err.message || "Please enter valid numbers."
-    );
+  if (!validNumber(percentInput) || !validNumber(numberInput)) {
+    showError("Please enter valid numbers for the percentage and value.");
+    return;
   }
-}
 
-function resetCalculator() {
-  document.querySelectorAll("input").forEach(input => {
-    input.value = "";
-  });
+  const percent = Number(percentInput.value);
+  const number = Number(numberInput.value);
 
-  resultValue.textContent = "0.00";
+  const result = (percent / 100) * number;
 
-  result.hidden = true;
-  error.hidden = true;
-  error.textContent = "";
-}
+  ofValue.textContent = result.toFixed(2);
+  ofResult.hidden = false;
+});
 
-document
-  .querySelector("#calculate-basic")
-  .addEventListener(
-    "click",
-    calculateBasic
-  );
 
-document
-  .querySelector("#calculate-of-value")
-  .addEventListener(
-    "click",
-    calculateOfValue
-  );
+/* -------------------------------
+   PERCENTAGE CHANGE
+-------------------------------- */
 
-document
-  .querySelector("#calculate-change")
-  .addEventListener(
-    "click",
-    calculateChange
-  );
+calculateChangeButton.addEventListener("click", () => {
+  clearError();
+  changeResult.hidden = true;
 
-document
-  .querySelector("#reset")
-  .addEventListener(
-    "click",
-    resetCalculator
-  );
+  if (!validNumber(oldValueInput) || !validNumber(newValueInput)) {
+    showError("Please enter valid original and new values.");
+    return;
+  }
+
+  const oldValue = Number(oldValueInput.value);
+  const newValue = Number(newValueInput.value);
+
+  if (oldValue === 0) {
+    showError("The original value cannot be zero.");
+    return;
+  }
+
+  const change =
+    ((newValue - oldValue) / Math.abs(oldValue)) * 100;
+
+  const direction =
+    change > 0
+      ? "increase"
+      : change < 0
+        ? "decrease"
+        : "no change";
+
+  changeValue.textContent =
+    `${Math.abs(change).toFixed(2)}% ${direction}`;
+
+  changeResult.hidden = false;
+});
+
+
+/* -------------------------------
+   RESET
+-------------------------------- */
+
+resetButton.addEventListener("click", () => {
+  valueInput.value = "";
+  totalInput.value = "";
+
+  percentInput.value = "";
+  numberInput.value = "";
+
+  oldValueInput.value = "";
+  newValueInput.value = "";
+
+  percentageValue.textContent = "0%";
+  ofValue.textContent = "0";
+  changeValue.textContent = "0%";
+
+  percentageResult.hidden = true;
+  ofResult.hidden = true;
+  changeResult.hidden = true;
+
+  clearError();
+});
