@@ -1,208 +1,189 @@
-import {
-  getGradeForScore
-} from "./calculations.js";
+const scoreInput = document.getElementById("score");
+const calculateButton = document.getElementById("calculate-grade");
 
-const scoreInput =
-  document.querySelector("#score");
+const resultBox = document.getElementById("grade-result");
+const gradeValue = document.getElementById("grade-value");
+const gradePoint = document.getElementById("grade-point");
 
-const scaleRows =
-  document.querySelector("#scale-rows");
+const errorBox = document.getElementById("error");
+const resetScaleButton = document.getElementById("reset-scale");
 
-const error =
-  document.querySelector("#error");
-
-const result =
-  document.querySelector("#result");
-
-const gradeResult =
-  document.querySelector("#grade-result");
-
-const scoreSummary =
-  document.querySelector("#score-summary");
-
-const DEFAULT_SCALE = [
-  { label: "A", min: 70 },
-  { label: "B", min: 60 },
-  { label: "C", min: 50 },
-  { label: "D", min: 45 },
-  { label: "E", min: 40 },
-  { label: "F", min: 0 }
+const scaleInputs = [
+  ...document.querySelectorAll(".min-score")
 ];
 
-function clearMessages() {
-  error.hidden = true;
-  error.textContent = "";
+const DEFAULT_SCALE = {
+  A: 70,
+  B: 60,
+  C: 50,
+  D: 45,
+  E: 40,
+  F: 0
+};
 
-  result.hidden = true;
+const GRADE_POINTS = {
+  A: 5,
+  B: 4,
+  C: 3,
+  D: 2,
+  E: 1,
+  F: 0
+};
+
+function showError(message) {
+  errorBox.textContent = message;
+  errorBox.hidden = false;
+  resultBox.hidden = true;
 }
 
-function addScaleRow(
-  label = "",
-  min = ""
-) {
-  const row =
-    document.createElement("tr");
+function clearError() {
+  errorBox.textContent = "";
+  errorBox.hidden = true;
+}
 
-  const gradeCell =
-    document.createElement("td");
+function getScale() {
+  const scale = {};
 
-  const minCell =
-    document.createElement("td");
+  for (const input of scaleInputs) {
+    const grade = input.dataset.grade;
+    const value = input.value.trim();
 
-  const actionCell =
-    document.createElement("td");
-
-  const labelInput =
-    document.createElement("input");
-
-  labelInput.type = "text";
-  labelInput.value = label;
-  labelInput.placeholder = "A";
-  labelInput.maxLength = 10;
-  labelInput.setAttribute(
-    "aria-label",
-    "Grade label"
-  );
-
-  const minInput =
-    document.createElement("input");
-
-  minInput.type = "number";
-  minInput.min = "0";
-  minInput.max = "100";
-  minInput.step = "any";
-  minInput.inputMode = "decimal";
-  minInput.value = min;
-  minInput.placeholder = "70";
-  minInput.setAttribute(
-    "aria-label",
-    "Minimum score"
-  );
-
-  const removeButton =
-    document.createElement("button");
-
-  removeButton.type = "button";
-  removeButton.className =
-    "button danger";
-
-  removeButton.textContent =
-    "Remove";
-
-  removeButton.addEventListener(
-    "click",
-    () => {
-      row.remove();
-      clearMessages();
+    if (value === "") {
+      throw new Error(
+        `Please enter a minimum score for grade ${grade}.`
+      );
     }
-  );
 
-  gradeCell.appendChild(labelInput);
-  minCell.appendChild(minInput);
-  actionCell.appendChild(removeButton);
+    const minimum = Number(value);
 
-  row.append(
-    gradeCell,
-    minCell,
-    actionCell
-  );
+    if (
+      !Number.isFinite(minimum) ||
+      minimum < 0 ||
+      minimum > 100
+    ) {
+      throw new Error(
+        `The minimum score for grade ${grade} must be between 0 and 100.`
+      );
+    }
 
-  scaleRows.appendChild(row);
-}
+    scale[grade] = minimum;
+  }
 
-function loadDefaultScale() {
-  scaleRows.replaceChildren();
+  const grades = Object.keys(scale);
 
-  DEFAULT_SCALE.forEach(item => {
-    addScaleRow(
-      item.label,
-      item.min
+  for (let i = 0; i < grades.length; i++) {
+    for (let j = i + 1; j < grades.length; j++) {
+      if (scale[grades[i]] === scale[grades[j]]) {
+        throw new Error(
+          `Grades ${grades[i]} and ${grades[j]} cannot have the same minimum score.`
+        );
+      }
+    }
+  }
+
+  if (scale.F !== 0) {
+    throw new Error(
+      "Grade F must have a minimum score of 0."
     );
-  });
+  }
 
-  clearMessages();
-}
+  const orderedGrades = [...grades].sort(
+    (a, b) => scale[b] - scale[a]
+  );
 
-function readScale() {
-  const rows =
-    [...scaleRows.rows];
+  for (let i = 0; i < orderedGrades.length - 1; i++) {
+    if (
+      scale[orderedGrades[i]] <=
+      scale[orderedGrades[i + 1]]
+    ) {
+      throw new Error(
+        "Each higher grade must have a higher minimum score."
+      );
+    }
+  }
 
-  return rows.map(row => ({
-    label:
-      row.cells[0]
-        .querySelector("input")
-        .value,
-
-    min:
-      row.cells[1]
-        .querySelector("input")
-        .value
-  }));
+  return scale;
 }
 
 function calculateGrade() {
-  try {
-    const score =
-      scoreInput.value;
+  clearError();
+  resultBox.hidden = true;
 
-    if (score === "") {
-      throw new Error(
-        "Please enter a score."
-      );
-    }
-
-    const scale =
-      readScale();
-
-    const grade =
-      getGradeForScore(
-        score,
-        scale
-      );
-
-    gradeResult.textContent =
-      grade;
-
-    scoreSummary.textContent =
-      `Score: ${Number(score).toFixed(2)} / 100`;
-
-    result.hidden = false;
-
-    error.hidden = true;
-    error.textContent = "";
-
-  } catch (err) {
-    error.textContent =
-      err.message ||
-      "Unable to calculate the grade.";
-
-    error.hidden = false;
-    result.hidden = true;
+  if (scoreInput.value.trim() === "") {
+    showError("Please enter your score.");
+    return;
   }
+
+  const score = Number(scoreInput.value);
+
+  if (!Number.isFinite(score)) {
+    showError("Please enter a valid number.");
+    return;
+  }
+
+  if (score < 0 || score > 100) {
+    showError("Score must be between 0 and 100.");
+    return;
+  }
+
+  let scale;
+
+  try {
+    scale = getScale();
+  } catch (error) {
+    showError(error.message);
+    return;
+  }
+
+  const orderedGrades = Object.keys(scale).sort(
+    (a, b) => scale[b] - scale[a]
+  );
+
+  let earnedGrade = "F";
+
+  for (const grade of orderedGrades) {
+    if (score >= scale[grade]) {
+      earnedGrade = grade;
+      break;
+    }
+  }
+
+  gradeValue.textContent = earnedGrade;
+
+  gradePoint.textContent =
+    `Grade point: ${GRADE_POINTS[earnedGrade]} • Score: ${score}%`;
+
+  resultBox.hidden = false;
 }
 
-document
-  .querySelector("#calculate")
-  .addEventListener(
-    "click",
-    calculateGrade
-  );
+function resetScale() {
+  for (const input of scaleInputs) {
+    const grade = input.dataset.grade;
 
-document
-  .querySelector("#add-grade")
-  .addEventListener(
-    "click",
-    () => {
-      addScaleRow();
-      clearMessages();
-    }
-  );
+    input.value = DEFAULT_SCALE[grade];
+  }
 
-document
-  .querySelector("#reset-scale")
-  .addEventListener(
-    "click",
-    loadDefaultScale
-  );
+  clearError();
+  resultBox.hidden = true;
+  scoreInput.value = "";
+  gradeValue.textContent = "—";
+  gradePoint.textContent = "";
+}
 
-loadDefaultScale();
+calculateButton.addEventListener(
+  "click",
+  calculateGrade
+);
+
+resetScaleButton.addEventListener(
+  "click",
+  resetScale
+);
+
+scoreInput.addEventListener("keydown", (event) => {
+  if (event.key === "Enter") {
+    calculateGrade();
+  }
+});
+
+resetScale();
