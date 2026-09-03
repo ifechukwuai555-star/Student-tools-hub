@@ -1,128 +1,248 @@
-import {
-  dateDifferenceDays,
-  addDays
-} from "./calculations.js";
 
-const startDate = document.querySelector("#start-date");
-const endDate = document.querySelector("#end-date");
+const startDateInput = document.getElementById("start-date");
+const endDateInput = document.getElementById("end-date");
+const calculateDifferenceButton =
+  document.getElementById("calculate-difference");
 
-const baseDate = document.querySelector("#base-date");
-const daysInput = document.querySelector("#days");
+const differenceResult =
+  document.getElementById("difference-result");
+const differenceValue =
+  document.getElementById("difference-value");
 
-const differenceResult = document.querySelector("#difference-result");
-const differenceValue = document.querySelector("#difference-value");
+const baseDateInput =
+  document.getElementById("base-date");
+const daysInput =
+  document.getElementById("days");
+const calculateDateButton =
+  document.getElementById("calculate-date");
 
-const dateResult = document.querySelector("#date-result");
-const newDate = document.querySelector("#new-date");
+const dateResult =
+  document.getElementById("date-result");
+const newDateElement =
+  document.getElementById("new-date");
 
-const error = document.querySelector("#error");
+const errorBox =
+  document.getElementById("error");
 
-const differenceButton = document.querySelector("#calculate-difference");
-const dateButton = document.querySelector("#calculate-date");
-const resetButton = document.querySelector("#reset");
+const resetButton =
+  document.getElementById("reset");
+
 
 function showError(message) {
-  error.textContent = message;
-  error.hidden = false;
+  errorBox.textContent = message;
+  errorBox.hidden = false;
 }
+
 
 function clearError() {
-  error.textContent = "";
-  error.hidden = true;
+  errorBox.textContent = "";
+  errorBox.hidden = true;
 }
 
-function hideResults() {
-  differenceResult.hidden = true;
-  dateResult.hidden = true;
-}
 
-function calculateDifference() {
-  clearError();
+/*
+  Parse a date as UTC.
 
-  try {
-    if (!startDate.value || !endDate.value) {
-      throw new Error("Please select both dates.");
-    }
+  Using UTC avoids problems caused by daylight-saving
+  time when calculating the number of days between dates.
+*/
+function parseDate(value) {
 
-    const difference = dateDifferenceDays(
-      startDate.value,
-      endDate.value
-    );
+  const parts = value.split("-").map(Number);
 
-    differenceValue.textContent = `${Math.abs(difference)} days`;
-
-    if (difference === 0) {
-      differenceValue.textContent = "0 days";
-    }
-
-    differenceResult.hidden = false;
-  } catch (err) {
-    differenceResult.hidden = true;
-    showError(err.message || "Unable to calculate the date difference.");
+  if (parts.length !== 3) {
+    return null;
   }
+
+  const [year, month, day] = parts;
+
+  const date = new Date(
+    Date.UTC(year, month - 1, day)
+  );
+
+  /*
+    Make sure the date is actually valid.
+    This prevents dates such as 2026-02-31 from
+    being silently converted into another date.
+  */
+  if (
+    date.getUTCFullYear() !== year ||
+    date.getUTCMonth() !== month - 1 ||
+    date.getUTCDate() !== day
+  ) {
+    return null;
+  }
+
+  return date;
 }
 
-function calculateNewDate() {
-  clearError();
 
-  try {
-    if (!baseDate.value) {
-      throw new Error("Please select a starting date.");
-    }
+function formatDate(date) {
 
-    if (daysInput.value === "") {
-      throw new Error("Please enter the number of days.");
-    }
-
-    const days = Number(daysInput.value);
-
-    if (!Number.isInteger(days)) {
-      throw new Error("The number of days must be a whole number.");
-    }
-
-    const calculatedDate = addDays(
-      baseDate.value,
-      days
-    );
-
-    const formattedDate = new Date(
-      `${calculatedDate}T00:00:00Z`
-    ).toLocaleDateString(undefined, {
+  return new Intl.DateTimeFormat(
+    undefined,
+    {
       year: "numeric",
       month: "long",
       day: "numeric",
       timeZone: "UTC"
-    });
+    }
+  ).format(date);
 
-    newDate.textContent = formattedDate;
-    dateResult.hidden = false;
-  } catch (err) {
-    dateResult.hidden = true;
-    showError(err.message || "Unable to calculate the new date.");
+}
+
+
+/* -------------------------------
+   DIFFERENCE BETWEEN DATES
+-------------------------------- */
+
+calculateDifferenceButton.addEventListener(
+  "click",
+  () => {
+
+    clearError();
+
+    differenceResult.hidden = true;
+
+    if (
+      !startDateInput.value ||
+      !endDateInput.value
+    ) {
+      showError(
+        "Please enter both the start date and end date."
+      );
+
+      return;
+    }
+
+    const startDate =
+      parseDate(startDateInput.value);
+
+    const endDate =
+      parseDate(endDateInput.value);
+
+    if (!startDate || !endDate) {
+
+      showError(
+        "Please enter valid dates."
+      );
+
+      return;
+    }
+
+    const millisecondsPerDay =
+      24 * 60 * 60 * 1000;
+
+    const difference =
+      Math.abs(
+        endDate.getTime() -
+        startDate.getTime()
+      ) / millisecondsPerDay;
+
+    differenceValue.textContent =
+      Math.round(difference);
+
+    differenceResult.hidden = false;
+
   }
-}
-
-function resetCalculator() {
-  startDate.value = "";
-  endDate.value = "";
-  baseDate.value = "";
-  daysInput.value = "";
-
-  hideResults();
-  clearError();
-}
-
-differenceButton.addEventListener(
-  "click",
-  calculateDifference
 );
 
-dateButton.addEventListener(
+
+/* -------------------------------
+   ADD / SUBTRACT DAYS
+-------------------------------- */
+
+calculateDateButton.addEventListener(
   "click",
-  calculateNewDate
+  () => {
+
+    clearError();
+
+    dateResult.hidden = true;
+
+    if (!baseDateInput.value) {
+
+      showError(
+        "Please enter a starting date."
+      );
+
+      return;
+    }
+
+    if (daysInput.value.trim() === "") {
+
+      showError(
+        "Please enter the number of days."
+      );
+
+      return;
+    }
+
+    const days =
+      Number(daysInput.value);
+
+    if (!Number.isInteger(days)) {
+
+      showError(
+        "Please enter a whole number of days."
+      );
+
+      return;
+    }
+
+    const date =
+      parseDate(baseDateInput.value);
+
+    if (!date) {
+
+      showError(
+        "Please enter a valid starting date."
+      );
+
+      return;
+    }
+
+    /*
+      Add or subtract days using UTC.
+      This correctly handles:
+      - Different month lengths
+      - Leap years
+      - Moving across years
+    */
+    date.setUTCDate(
+      date.getUTCDate() + days
+    );
+
+    newDateElement.textContent =
+      formatDate(date);
+
+    dateResult.hidden = false;
+
+  }
 );
+
+
+/* -------------------------------
+   RESET
+-------------------------------- */
 
 resetButton.addEventListener(
   "click",
-  resetCalculator
+  () => {
+
+    startDateInput.value = "";
+    endDateInput.value = "";
+
+    baseDateInput.value = "";
+    daysInput.value = "";
+
+    differenceValue.textContent = "0";
+    newDateElement.textContent = "—";
+
+    differenceResult.hidden = true;
+    dateResult.hidden = true;
+
+    clearError();
+
+  }
 );
