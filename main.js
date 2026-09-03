@@ -1,37 +1,42 @@
-const search = document.querySelector("#tool-search");
-const cards = [...document.querySelectorAll(".tool-card")];
-const status = document.querySelector("#search-status");
-const empty = document.querySelector("#no-results");
 
-if (search) {
-  search.addEventListener("input", () => {
-    const query = search.value.trim().toLowerCase();
+document.addEventListener("DOMContentLoaded", () => {
+  const searchInput = document.getElementById("tool-search");
+  const toolCards = document.querySelectorAll(".tool-card");
+  const noResults = document.getElementById("no-results");
 
-    let visible = 0;
+  if (!searchInput || !toolCards.length) {
+    return;
+  }
 
-    cards.forEach(card => {
-      const searchableText =
-        card.dataset.tool ||
-        card.textContent.toLowerCase();
+  function searchTools() {
+    const query = searchInput.value.trim().toLowerCase();
+    let visibleTools = 0;
 
-      const match =
-        !query ||
-        searchableText.toLowerCase().includes(query);
+    toolCards.forEach((card) => {
+      const title = card.querySelector("h3")?.textContent.toLowerCase() || "";
+      const description =
+        card.querySelector("p")?.textContent.toLowerCase() || "";
+      const keywords = card.dataset.tool?.toLowerCase() || "";
 
-      card.hidden = !match;
+      const matches =
+        query === "" ||
+        title.includes(query) ||
+        description.includes(query) ||
+        keywords.includes(query);
 
-      if (match) {
-        visible++;
+      card.hidden = !matches;
+
+      if (matches) {
+        visibleTools++;
       }
     });
 
-    if (query) {
-      status.textContent =
-        `${visible} tool${visible === 1 ? "" : "s"} found`;
-    } else {
-      status.textContent = "";
+    if (noResults) {
+      noResults.hidden = visibleTools !== 0;
     }
+  }
 
-    empty.hidden = visible !== 0;
-  });
-}
+  searchInput.addEventListener("input", searchTools);
+
+  searchTools();
+});
