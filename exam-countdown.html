@@ -1,210 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Exam Countdown | Student Tools Hub</title>
-  <meta name="description" content="Count down the time remaining until your exam with a live days, hours, minutes and seconds countdown.">
+  <meta
+    name="description"
+    content="Count down to your next examination with a live exam countdown timer."
+  />
 
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style.css" />
 </head>
-
 <body>
-
   <header class="site-header">
-    <div class="container header-inner">
-      <a class="brand" href="../index.html">Student Tools Hub</a>
+    <div class="container header-content">
+      <a class="logo" href="../index.html">Student Tools Hub</a>
 
       <nav class="main-nav" aria-label="Main navigation">
         <a href="../index.html">Home</a>
-        <a href="../index.html#tools">Calculators</a>
+        <a href="../index.html#calculators">Calculators</a>
         <a href="../index.html#study-tools">Study Tools</a>
-        <a href="../index.html#about">About</a>
+        <a href="../about.html">About</a>
       </nav>
     </div>
   </header>
 
   <main class="container tool-page">
-
-    <a class="back-link" href="../index.html">← Back to Student Tools Hub</a>
-
-    <section class="tool-hero">
-      <span class="tool-icon">⏳</span>
-
+    <section class="tool-intro">
+      <p class="eyebrow">Study Tool</p>
       <h1>Exam Countdown</h1>
-
       <p>
-        Enter your exam date and time to see a live countdown
-        showing the remaining days, hours, minutes and seconds.
+        Set your examination date and time to see how long you have left.
       </p>
     </section>
 
     <section class="calculator-card">
+      <h2>Set Your Exam Date</h2>
 
-      <div class="calculator-heading">
-        <h2>Set Your Exam Date</h2>
-
-        <p>
-          The countdown uses your device's local date and time.
-        </p>
+      <div class="form-group">
+        <label for="exam-date">Exam date and time</label>
+        <input type="datetime-local" id="exam-date" />
       </div>
 
-      <div class="form-grid">
+      <div class="button-group">
+        <button type="button" id="start-countdown" class="btn btn-primary">
+          Start Countdown
+        </button>
 
-        <div class="form-group">
-          <label for="exam-date">Exam Date</label>
-
-          <input
-            id="exam-date"
-            type="date"
-          >
-        </div>
-
-        <div class="form-group">
-          <label for="exam-time">Exam Time</label>
-
-          <input
-            id="exam-time"
-            type="time"
-            value="08:00"
-          >
-        </div>
-
+        <button type="button" id="reset" class="btn btn-secondary">
+          Reset
+        </button>
       </div>
 
-      <button
-        id="start-countdown"
-        class="button primary"
-        type="button"
-      >
-        Start Countdown
-      </button>
+      <p id="error" class="error-message" role="alert"></p>
 
-      <div
-        id="error"
-        class="message error-message"
-        hidden
-      ></div>
-
-      <div
-        id="countdown-result"
-        class="countdown-card"
-        hidden
-      >
-
-        <p id="countdown-status">
-          Time remaining
-        </p>
+      <div id="countdown-result" class="result-card" hidden>
+        <h2>Time Remaining</h2>
 
         <div class="countdown-grid">
-
-          <div class="countdown-unit">
+          <div class="countdown-item">
             <strong id="days">0</strong>
             <span>Days</span>
           </div>
 
-          <div class="countdown-unit">
+          <div class="countdown-item">
             <strong id="hours">0</strong>
             <span>Hours</span>
           </div>
 
-          <div class="countdown-unit">
+          <div class="countdown-item">
             <strong id="minutes">0</strong>
             <span>Minutes</span>
           </div>
 
-          <div class="countdown-unit">
+          <div class="countdown-item">
             <strong id="seconds">0</strong>
             <span>Seconds</span>
           </div>
-
         </div>
 
+        <p id="countdown-message"></p>
       </div>
-
-      <button
-        id="reset"
-        class="button danger"
-        type="button"
-      >
-        Reset
-      </button>
-
     </section>
 
     <section class="info-section">
-
       <h2>How It Works</h2>
-
       <p>
-        Choose your exam date and time. The calculator compares
-        that time with your device's current local time and
-        updates the countdown every second.
+        Choose your exam date and time. The countdown uses your device’s local
+        time and updates every second.
       </p>
-
-      <p>
-        If the selected exam time has already passed, the
-        calculator will tell you that the exam time has passed.
-      </p>
-
     </section>
 
     <section class="info-section">
-
       <h2>Frequently Asked Questions</h2>
 
       <details>
         <summary>Does the countdown update automatically?</summary>
-
-        <p>
-          Yes. The countdown updates every second while the page
-          is open.
-        </p>
+        <p>Yes. The timer updates every second while the page is open.</p>
       </details>
 
       <details>
-        <summary>Which time zone does it use?</summary>
-
-        <p>
-          It uses the local date and time configured on your device.
-        </p>
+        <summary>What happens when the exam time passes?</summary>
+        <p>The calculator displays that the exam time has arrived.</p>
       </details>
 
       <details>
-        <summary>Can I use it for any event?</summary>
-
-        <p>
-          Yes. Although it is designed for exams, you can use it
-          for any future date and time.
-        </p>
+        <summary>Can I use this on my phone?</summary>
+        <p>Yes. The countdown is designed to work on phones, tablets, and computers.</p>
       </details>
-
     </section>
-
   </main>
 
   <footer class="site-footer">
-
-    <div class="container">
-
-      <p>© 2026 Student Tools Hub</p>
+    <div class="container footer-content">
+      <p>&copy; 2026 Student Tools Hub. All rights reserved.</p>
 
       <div class="footer-links">
-        <a href="../index.html#about">About</a>
-        <a href="../index.html#contact">Contact</a>
-        <a href="../index.html#privacy">Privacy Policy</a>
-        <a href="../index.html#terms">Terms</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms</a>
       </div>
-
     </div>
-
   </footer>
 
-  <script
-    type="module"
-    src="../countdown.js"
-  ></script>
-
+  <script type="module" src="../js/countdown.js"></script>
 </body>
 </html>
