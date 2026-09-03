@@ -1,111 +1,149 @@
-import { countdownParts } from "./calculations.js";
+const examDateInput = document.getElementById("exam-date");
+const examTimeInput = document.getElementById("exam-time");
 
-const dateInput = document.querySelector("#exam-date");
-const timeInput = document.querySelector("#exam-time");
+const startButton = document.getElementById("start-countdown");
+const resetButton = document.getElementById("reset");
 
-const startButton = document.querySelector("#start-countdown");
-const resetButton = document.querySelector("#reset");
+const resultBox = document.getElementById("countdown-result");
+const errorBox = document.getElementById("error");
+const statusText = document.getElementById("countdown-status");
 
-const error = document.querySelector("#error");
-const result = document.querySelector("#countdown-result");
+const daysElement = document.getElementById("days");
+const hoursElement = document.getElementById("hours");
+const minutesElement = document.getElementById("minutes");
+const secondsElement = document.getElementById("seconds");
 
-const daysElement = document.querySelector("#days");
-const hoursElement = document.querySelector("#hours");
-const minutesElement = document.querySelector("#minutes");
-const secondsElement = document.querySelector("#seconds");
-const statusElement = document.querySelector("#countdown-status");
-
-let timer = null;
+let countdownTimer = null;
 
 function showError(message) {
-  error.textContent = message;
-  error.hidden = false;
-  result.hidden = true;
+  errorBox.textContent = message;
+  errorBox.hidden = false;
+  resultBox.hidden = true;
 }
 
 function clearError() {
-  error.textContent = "";
-  error.hidden = true;
+  errorBox.textContent = "";
+  errorBox.hidden = true;
 }
 
-function updateCountdown(targetTime) {
-  const parts = countdownParts(targetTime);
+function getExamDate() {
+  const date = examDateInput.value;
+  const time = examTimeInput.value;
 
-  daysElement.textContent = parts.days;
-  hoursElement.textContent = String(parts.hours).padStart(2, "0");
-  minutesElement.textContent = String(parts.minutes).padStart(2, "0");
-  secondsElement.textContent = String(parts.seconds).padStart(2, "0");
+  if (!date) {
+    throw new Error("Please select your exam date.");
+  }
 
-  result.hidden = false;
+  if (!time) {
+    throw new Error("Please select your exam time.");
+  }
 
-  if (parts.past) {
-    statusElement.textContent = "The exam time has arrived or has already passed.";
+  const examDate = new Date(`${date}T${time}`);
 
-    if (timer) {
-      clearInterval(timer);
-      timer = null;
-    }
+  if (Number.isNaN(examDate.getTime())) {
+    throw new Error("Please enter a valid date and time.");
+  }
+
+  return examDate;
+}
+
+function updateCountdown(examDate) {
+  const now = new Date();
+
+  const difference = examDate.getTime() - now.getTime();
+
+  if (difference <= 0) {
+    daysElement.textContent = "0";
+    hoursElement.textContent = "0";
+    minutesElement.textContent = "0";
+    secondsElement.textContent = "0";
+
+    statusText.textContent = "The exam date and time have passed.";
+
+    stopCountdown();
 
     return;
   }
 
-  statusElement.textContent = "Keep studying — your exam is getting closer!";
+  const totalSeconds = Math.floor(difference / 1000);
+
+  const days = Math.floor(totalSeconds / 86400);
+
+  const hours = Math.floor(
+    (totalSeconds % 86400) / 3600
+  );
+
+  const minutes = Math.floor(
+    (totalSeconds % 3600) / 60
+  );
+
+  const seconds = totalSeconds % 60;
+
+  daysElement.textContent = days;
+  hoursElement.textContent = String(hours).padStart(2, "0");
+  minutesElement.textContent = String(minutes).padStart(2, "0");
+  secondsElement.textContent = String(seconds).padStart(2, "0");
+
+  statusText.textContent = "Time remaining";
+}
+
+function stopCountdown() {
+  if (countdownTimer !== null) {
+    clearInterval(countdownTimer);
+    countdownTimer = null;
+  }
 }
 
 function startCountdown() {
   clearError();
+  stopCountdown();
 
-  if (!dateInput.value) {
-    showError("Please select an exam date.");
+  let examDate;
+
+  try {
+    examDate = getExamDate();
+  } catch (error) {
+    showError(error.message);
     return;
   }
 
-  if (!timeInput.value) {
-    showError("Please select an exam time.");
-    return;
+  resultBox.hidden = false;
+
+  updateCountdown(examDate);
+
+  if (examDate.getTime() > Date.now()) {
+    countdownTimer = setInterval(() => {
+      updateCountdown(examDate);
+    }, 1000);
   }
-
-  const target = new Date(
-    `${dateInput.value}T${timeInput.value}`
-  );
-
-  if (Number.isNaN(target.getTime())) {
-    showError("Please enter a valid exam date and time.");
-    return;
-  }
-
-  const targetTime = target.getTime();
-
-  if (timer) {
-    clearInterval(timer);
-  }
-
-  updateCountdown(targetTime);
-
-  timer = setInterval(() => {
-    updateCountdown(targetTime);
-  }, 1000);
 }
 
 function resetCountdown() {
-  if (timer) {
-    clearInterval(timer);
-    timer = null;
-  }
+  stopCountdown();
 
-  dateInput.value = "";
-  timeInput.value = "";
+  examDateInput.value = "";
+  examTimeInput.value = "08:00";
 
   daysElement.textContent = "0";
   hoursElement.textContent = "0";
   minutesElement.textContent = "0";
   secondsElement.textContent = "0";
 
-  statusElement.textContent = "";
+  statusText.textContent = "Time remaining";
 
-  result.hidden = true;
+  resultBox.hidden = true;
+
   clearError();
 }
 
-startButton.addEventListener("click", startCountdown);
-resetButton.addEventListener("click", resetCountdown);
+startButton.addEventListener(
+  "click",
+  startCountdown
+);
+
+resetButton.addEventListener(
+  "click",
+  resetCountdown
+);
+
+window.addEventListener("beforeunload", stopCountdown);
