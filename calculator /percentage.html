@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Percentage Calculator | Student Tools Hub</title>
+
+  <meta
+    name="description"
+    content="Calculate percentages, percentage of a value, and percentage change with the Student Tools Hub Percentage Calculator."
+  >
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="header-inner">
+
+        <a href="../index.html" class="site-logo">
+          Student Tools Hub
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#tools">Calculators</a>
+          <a href="../about.html">About</a>
+        </nav>
+
+      </div>
+    </div>
+  </header>
+
+
+  <main class="tool-page">
+
+    <div class="container">
+
+      <a href="../index.html" class="back-link">
+        ← Back to Student Tools
+      </a>
+
+      <section class="tool-hero">
+        <span class="hero-badge">📊 Mathematics Tool</span>
+
+        <h1>Percentage Calculator</h1>
+
+        <p>
+          Calculate percentages, find a percentage of a value,
+          and work out percentage change.
+        </p>
+      </section>
+
+
+      <section class="tool-panel">
+
+        <h2>Percentage Calculations</h2>
+
+        <p>
+          Enter your values in any section below.
+        </p>
+
+
+        <!-- PERCENTAGE OF ANOTHER VALUE -->
+        <div class="calculator-card">
+
+          <h3>What Percentage Is One Value of Another?</h3>
+
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="value">Value</label>
+
+              <input
+                type="number"
+                id="value"
+                placeholder="Example: 25"
+                step="any"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="total">Total</label>
+
+              <input
+                type="number"
+                id="total"
+                placeholder="Example: 100"
+                step="any"
+              >
+            </div>
+
+          </div>
+
+          <button
+            type="button"
+            id="calculate-percentage"
+            class="btn btn-primary"
+          >
+            Calculate Percentage
+          </button>
+
+          <div
+            id="percentage-result"
+            class="result-card"
+            hidden
+          >
+            <h4>Result</h4>
+            <div id="percentage-value" class="result-value">
+              0%
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- PERCENTAGE OF A VALUE -->
+        <div class="calculator-card">
+
+          <h3>What Is a Percentage of a Value?</h3>
+
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="percent">Percentage</label>
+
+              <input
+                type="number"
+                id="percent"
+                placeholder="Example: 20"
+                step="any"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="number">Value</label>
+
+              <input
+                type="number"
+                id="number"
+                placeholder="Example: 200"
+                step="any"
+              >
+            </div>
+
+          </div>
+
+          <button
+            type="button"
+            id="calculate-of"
+            class="btn btn-primary"
+          >
+            Calculate Value
+          </button>
+
+          <div
+            id="of-result"
+            class="result-card"
+            hidden
+          >
+            <h4>Result</h4>
+            <div id="of-value" class="result-value">
+              0
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-- PERCENTAGE CHANGE -->
+        <div class="calculator-card">
+
+          <h3>Percentage Change</h3>
+
+          <div class="form-grid">
+
+            <div class="form-group">
+              <label for="old-value">Original Value</label>
+
+              <input
+                type="number"
+                id="old-value"
+                placeholder="Example: 100"
+                step="any"
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="new-value">New Value</label>
+
+              <input
+                type="number"
+                id="new-value"
+                placeholder="Example: 120"
+                step="any"
+              >
+            </div>
+
+          </div>
+
+          <button
+            type="button"
+            id="calculate-change"
+            class="btn btn-primary"
+          >
+            Calculate Change
+          </button>
+
+          <div
+            id="change-result"
+            class="result-card"
+            hidden
+          >
+            <h4>Result</h4>
+            <div id="change-value" class="result-value">
+              0%
+            </div>
+          </div>
+
+        </div>
+
+
+        <p
+          id="error"
+          class="form-error"
+          role="alert"
+          hidden
+        ></p>
+
+        <button
+          type="button"
+          id="reset"
+          class="btn btn-outline"
+        >
+          Reset
+        </button>
+
+      </section>
+
+
+      <section class="info-section">
+
+        <h2>How Percentage Calculations Work</h2>
+
+        <p>
+          To find what percentage one value is of another,
+          divide the value by the total and multiply by 100.
+        </p>
+
+        <p>
+          To find a percentage of a value, divide the percentage
+          by 100 and multiply it by the value.
+        </p>
+
+        <p>
+          Percentage change compares the difference between the
+          original and new values with the original value.
+        </p>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <footer class="site-footer">
+
+    <div class="container">
+
+      <div class="footer-content">
+
+        <div>
+          <h3>Student Tools Hub</h3>
+
+          <p>
+            Simple tools for everyday student life.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <a href="../index.html">Home</a>
+          <a href="../about.html">About</a>
+          <a href="../contact.html">Contact</a>
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../terms.html">Terms</a>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          © 2026 Student Tools Hub. All rights reserved.
+        </p>
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script type="module" src="../js/percentage.js"></script>
+
+</body>
+</html>
