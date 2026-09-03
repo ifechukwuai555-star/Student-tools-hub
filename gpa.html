@@ -5,102 +5,72 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>GPA Calculator | Student Tools Hub</title>
-  <meta
-    name="description"
-    content="Calculate your semester or study-period GPA using course grades and credit units."
-  >
+  <meta name="description" content="Calculate your semester GPA using course grades and credit units with the Student Tools Hub GPA calculator.">
 
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 
-<header class="site-header">
-  <div class="container header-inner">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html">Student Tools Hub</a>
 
-    <a class="brand" href="../index.html">
-      Student Tools Hub
-    </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#tools">Calculators</a>
+        <a href="../index.html#study-tools">Study Tools</a>
+        <a href="../index.html#about">About</a>
+      </nav>
+    </div>
+  </header>
 
-    <nav class="main-nav" aria-label="Main navigation">
-      <a href="../index.html">Home</a>
-      <a href="../index.html#calculators">Calculators</a>
-      <a href="../index.html#study-tools">Study Tools</a>
-      <a href="../about.html">About</a>
-    </nav>
+  <main class="container tool-page">
 
-  </div>
-</header>
+    <a class="back-link" href="../index.html">← Back to Student Tools Hub</a>
 
-<main class="tool-page">
-
-  <div class="container">
-
-    <a class="back-home" href="../index.html">
-      ← Back to Student Tools Hub
-    </a>
-
-    <header class="tool-header">
-
+    <section class="tool-hero">
+      <span class="tool-icon">📊</span>
       <h1>GPA Calculator</h1>
-
       <p>
-        Calculate your GPA for a semester or other study period
-        using course grades and credit units.
+        Calculate your semester GPA using your course grades
+        and credit units.
       </p>
+    </section>
 
-    </header>
+    <section class="calculator-card">
 
-    <section class="tool-panel">
-
-      <h2>Enter your courses</h2>
-
-      <p class="muted">
-        The default grading scale is:
-        A = 5, B = 4, C = 3, D = 2, E = 1, F = 0.
-      </p>
-
-      <div class="table-wrapper">
-
-        <table>
-
-          <thead>
-            <tr>
-              <th>Course</th>
-              <th>Credit Units</th>
-              <th>Grade</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-
-          <tbody id="course-rows"></tbody>
-
-        </table>
-
+      <div class="calculator-heading">
+        <h2>Enter Your Courses</h2>
+        <p>
+          Add your courses, enter the credit units and select each grade.
+        </p>
       </div>
 
-      <div class="form-actions">
+      <div id="course-list" class="course-list"></div>
+
+      <div class="calculator-actions">
 
         <button
-          type="button"
-          class="button secondary"
           id="add-course"
+          class="button secondary"
+          type="button"
         >
           + Add Course
         </button>
 
         <button
-          type="button"
-          class="button"
           id="calculate"
+          class="button primary"
+          type="button"
         >
           Calculate GPA
         </button>
 
         <button
-          type="button"
-          class="button secondary"
           id="reset"
+          class="button danger"
+          type="button"
         >
           Reset
         </button>
@@ -109,146 +79,112 @@
 
       <div
         id="error"
-        class="error"
-        role="alert"
+        class="message error-message"
         hidden
       ></div>
 
       <div
         id="result"
-        class="result"
-        aria-live="polite"
+        class="result-card"
         hidden
       >
+        <p>Your GPA</p>
 
-        <div class="muted">
-          Your GPA
-        </div>
+        <strong id="gpa-value">0.00</strong>
 
-        <div
-          id="gpa-value"
-          class="result-value"
-        >
-          0.00
-        </div>
-
-        <div
-          id="unit-summary"
-          class="muted"
-        ></div>
-
+        <span id="unit-summary"></span>
       </div>
 
     </section>
 
-    <section class="info-box">
+    <section class="info-section">
 
-      <h2>How the GPA calculation works</h2>
+      <h2>How GPA is calculated</h2>
 
       <p>
-        GPA is calculated by multiplying each course's grade
-        point by its credit units, adding the quality points,
-        and dividing by the total credit units.
+        GPA is calculated by multiplying each course's grade point
+        by its credit units, adding the quality points and dividing
+        by the total credit units.
       </p>
 
-      <p>
+      <div class="formula-box">
         <strong>
           GPA = Total Quality Points ÷ Total Credit Units
         </strong>
-      </p>
+      </div>
 
-      <p>
-        GPA normally represents a specific semester or study
-        period, while CGPA represents the cumulative result
-        across multiple periods.
-      </p>
+      <h3>5-Point Grading Scale</h3>
+
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Grade</th>
+              <th>Grade Point</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr><td>A</td><td>5</td></tr>
+            <tr><td>B</td><td>4</td></tr>
+            <tr><td>C</td><td>3</td></tr>
+            <tr><td>D</td><td>2</td></tr>
+            <tr><td>E</td><td>1</td></tr>
+            <tr><td>F</td><td>0</td></tr>
+          </tbody>
+        </table>
+      </div>
 
     </section>
 
-    <section class="faq">
+    <section class="info-section">
 
       <h2>Frequently Asked Questions</h2>
 
       <details>
-        <summary>
-          What grading scale does this calculator use?
-        </summary>
-
+        <summary>What is GPA?</summary>
         <p>
-          It uses the 5-point scale:
-          A = 5, B = 4, C = 3, D = 2, E = 1 and F = 0.
+          GPA is a grade-point average calculated from the courses
+          included in a particular semester or academic period.
         </p>
       </details>
 
       <details>
-        <summary>
-          What is the difference between GPA and CGPA?
-        </summary>
-
+        <summary>Is GPA the same as CGPA?</summary>
         <p>
-          GPA usually represents one semester or study period.
-          CGPA represents your cumulative performance across
-          multiple periods.
+          No. GPA normally represents a particular academic period,
+          while CGPA represents cumulative performance over multiple
+          academic periods.
         </p>
       </details>
 
       <details>
-        <summary>
-          Can I add more courses?
-        </summary>
-
+        <summary>Can I add more courses?</summary>
         <p>
-          Yes. Tap Add Course to add additional courses before
-          calculating your GPA.
+          Yes. Tap the Add Course button to add additional courses.
         </p>
       </details>
 
     </section>
 
-  </div>
+  </main>
 
-</main>
+  <footer class="site-footer">
+    <div class="container">
 
-<footer class="site-footer">
-
-  <div class="container">
-
-    <div class="footer-inner">
-
-      <div>
-
-        <div class="footer-brand">
-          Student Tools Hub
-        </div>
-
-        <p class="footer-text">
-          Free, simple calculators and study tools for
-          students.
-        </p>
-
-      </div>
+      <p>© 2026 Student Tools Hub</p>
 
       <div class="footer-links">
-
-        <a href="../index.html">Home</a>
-        <a href="../about.html">About</a>
-        <a href="../contact.html">Contact</a>
-        <a href="../privacy.html">Privacy Policy</a>
-        <a href="../terms.html">Terms of Use</a>
-
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="../index.html#privacy">Privacy Policy</a>
+        <a href="../index.html#terms">Terms</a>
       </div>
 
     </div>
+  </footer>
 
-    <div class="footer-bottom">
-      © 2026 Student Tools Hub. All rights reserved.
-    </div>
-
-  </div>
-
-</footer>
-
-<script type="module" src="../js/gpa.js"></script>
+  <script type="module" src="../gpa.js"></script>
 
 </body>
 </html>
