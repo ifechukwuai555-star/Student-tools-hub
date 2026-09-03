@@ -1,322 +1,146 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <title>Date Calculator | Student Tools Hub</title>
-  <meta name="description" content="Calculate the difference between two dates or add and subtract days from a date with Student Tools Hub.">
+  <meta
+    name="description"
+    content="Calculate the difference between dates or add and subtract days with this simple date calculator."
+  />
 
-  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/style.css" />
 </head>
-
 <body>
-
   <header class="site-header">
-    <div class="container header-inner">
-
-      <a class="brand" href="../index.html">
-        Student Tools Hub
-      </a>
+    <div class="container header-content">
+      <a class="logo" href="../index.html">Student Tools Hub</a>
 
       <nav class="main-nav" aria-label="Main navigation">
         <a href="../index.html">Home</a>
-        <a href="../index.html#tools">Calculators</a>
+        <a href="../index.html#calculators">Calculators</a>
         <a href="../index.html#study-tools">Study Tools</a>
-        <a href="../index.html#about">About</a>
+        <a href="../about.html">About</a>
       </nav>
-
     </div>
   </header>
 
   <main class="container tool-page">
-
-    <a class="back-link" href="../index.html">
-      ← Back to Student Tools Hub
-    </a>
-
-    <section class="tool-hero">
-
-      <span class="tool-icon">📅</span>
-
+    <section class="tool-intro">
+      <p class="eyebrow">Student Calculator</p>
       <h1>Date Calculator</h1>
-
       <p>
-        Find the difference between two dates or calculate a new
-        date by adding or subtracting days.
+        Find the difference between two dates or calculate a new date by
+        adding or subtracting days.
       </p>
-
     </section>
 
-
-    <!-- DATE DIFFERENCE -->
-
     <section class="calculator-card">
+      <h2>Calculate Date Difference</h2>
 
-      <div class="calculator-heading">
-
-        <h2>Difference Between Dates</h2>
-
-        <p>
-          Find the number of days between two dates.
-        </p>
-
+      <div class="form-group">
+        <label for="start-date">Start date</label>
+        <input type="date" id="start-date" />
       </div>
 
-      <div class="form-grid">
-
-        <div class="form-group">
-
-          <label for="start-date">
-            Start Date
-          </label>
-
-          <input
-            id="start-date"
-            type="date"
-          >
-
-        </div>
-
-        <div class="form-group">
-
-          <label for="end-date">
-            End Date
-          </label>
-
-          <input
-            id="end-date"
-            type="date"
-          >
-
-        </div>
-
+      <div class="form-group">
+        <label for="end-date">End date</label>
+        <input type="date" id="end-date" />
       </div>
 
-      <button
-        id="calculate-difference"
-        class="button primary"
-        type="button"
-      >
+      <button type="button" id="calculate-difference" class="btn btn-primary">
         Calculate Difference
       </button>
 
-      <div
-        id="difference-result"
-        class="result-card"
-        hidden
-      >
+      <p id="difference-error" class="error-message" role="alert"></p>
 
-        <p>Difference</p>
-
-        <strong id="difference-value">
-          0
-        </strong>
-
-        <span>days</span>
-
+      <div id="difference-result" class="result-card" hidden>
+        <h2>Date Difference</h2>
+        <p id="difference-value">-</p>
       </div>
-
     </section>
-
-
-    <!-- ADD / SUBTRACT DAYS -->
 
     <section class="calculator-card">
+      <h2>Add or Subtract Days</h2>
 
-      <div class="calculator-heading">
-
-        <h2>Add or Subtract Days</h2>
-
-        <p>
-          Enter a date and the number of days to calculate
-          the resulting date.
-        </p>
-
+      <div class="form-group">
+        <label for="base-date">Starting date</label>
+        <input type="date" id="base-date" />
       </div>
 
-      <div class="form-grid">
-
-        <div class="form-group">
-
-          <label for="base-date">
-            Starting Date
-          </label>
-
-          <input
-            id="base-date"
-            type="date"
-          >
-
-        </div>
-
-        <div class="form-group">
-
-          <label for="days">
-            Days
-          </label>
-
-          <input
-            id="days"
-            type="number"
-            step="1"
-            inputmode="numeric"
-            placeholder="e.g. 30 or -30"
-          >
-
-        </div>
-
+      <div class="form-group">
+        <label for="days">Number of days</label>
+        <input
+          type="number"
+          id="days"
+          placeholder="Example: 30"
+          step="1"
+        />
       </div>
 
-      <p class="helper-text">
-        Use a positive number to add days and a negative number
-        to subtract days.
-      </p>
+      <div class="form-group">
+        <label for="operation">Operation</label>
+        <select id="operation">
+          <option value="add">Add days</option>
+          <option value="subtract">Subtract days</option>
+        </select>
+      </div>
 
-      <button
-        id="calculate-date"
-        class="button primary"
-        type="button"
-      >
-        Calculate Date
+      <button type="button" id="calculate-date" class="btn btn-primary">
+        Calculate New Date
       </button>
 
-      <div
-        id="date-result"
-        class="result-card"
-        hidden
-      >
+      <p id="date-error" class="error-message" role="alert"></p>
 
-        <p>New Date</p>
-
-        <strong id="new-date">
-          —
-        </strong>
-
+      <div id="date-result" class="result-card" hidden>
+        <h2>New Date</h2>
+        <p id="date-value">-</p>
       </div>
-
     </section>
 
-
-    <div
-      id="error"
-      class="message error-message"
-      hidden
-    ></div>
-
-
-    <div class="calculator-actions">
-
-      <button
-        id="reset"
-        class="button danger"
-        type="button"
-      >
-        Reset
-      </button>
-
-    </div>
-
-
     <section class="info-section">
-
       <h2>How It Works</h2>
-
       <p>
-        The calculator correctly accounts for different month
-        lengths and leap years when calculating dates.
+        Select two dates to calculate the number of days between them. You can
+        also choose a starting date and add or subtract a number of days.
       </p>
-
-      <div class="formula-box">
-
-        <strong>
-          New Date = Starting Date + Number of Days
-        </strong>
-
-      </div>
-
-      <p>
-        For example, entering 30 adds 30 days. Entering -30
-        subtracts 30 days.
-      </p>
-
     </section>
 
-
     <section class="info-section">
-
       <h2>Frequently Asked Questions</h2>
 
       <details>
-
-        <summary>
-          Does it account for leap years?
-        </summary>
-
-        <p>
-          Yes. The calculator uses the calendar date system,
-          including leap years.
-        </p>
-
+        <summary>Does it account for leap years?</summary>
+        <p>Yes. The calculator uses JavaScript date calculations, which account for leap years and different month lengths.</p>
       </details>
 
       <details>
-
-        <summary>
-          Can I subtract days?
-        </summary>
-
-        <p>
-          Yes. Enter a negative number, such as -7, to subtract
-          seven days.
-        </p>
-
+        <summary>Can I subtract days from a date?</summary>
+        <p>Yes. Select “Subtract days” and enter the number of days.</p>
       </details>
 
       <details>
-
-        <summary>
-          Can I calculate the days between two dates?
-        </summary>
-
-        <p>
-          Yes. Use the Difference Between Dates section at the
-          top of this page.
-        </p>
-
+        <summary>Can the date difference be negative?</summary>
+        <p>The calculator shows the absolute difference between the two selected dates.</p>
       </details>
-
     </section>
-
   </main>
 
-
   <footer class="site-footer">
-
-    <div class="container">
-
-      <p>
-        © 2026 Student Tools Hub
-      </p>
+    <div class="container footer-content">
+      <p>&copy; 2026 Student Tools Hub. All rights reserved.</p>
 
       <div class="footer-links">
-
-        <a href="../index.html#about">About</a>
-        <a href="../index.html#contact">Contact</a>
-        <a href="../index.html#privacy">Privacy Policy</a>
-        <a href="../index.html#terms">Terms</a>
-
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../terms.html">Terms</a>
       </div>
-
     </div>
-
   </footer>
 
-
-  <script
-    type="module"
-    src="../date-calculator.js"
-  ></script>
-
+  <script type="module" src="../js/date-calculator.js"></script>
 </body>
 </html>
