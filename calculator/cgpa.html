@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>CGPA Calculator | Student Tools Hub</title>
+
+  <meta
+    name="description"
+    content="Calculate your CGPA using course grades and credit units with the Student Tools Hub CGPA Calculator."
+  >
+
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+
+  <header class="site-header">
+    <div class="nav-container">
+      <div class="header-inner">
+
+        <a href="../index.html" class="site-logo">
+          Student Tools Hub
+        </a>
+
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="../index.html">Home</a>
+          <a href="../index.html#tools">Calculators</a>
+          <a href="../about.html">About</a>
+        </nav>
+
+      </div>
+    </div>
+  </header>
+
+
+  <main class="tool-page">
+
+    <div class="container">
+
+      <a href="../index.html" class="back-link">
+        ← Back to Student Tools
+      </a>
+
+      <section class="tool-hero">
+        <span class="hero-badge">🎓 Academic Calculator</span>
+
+        <h1>CGPA Calculator</h1>
+
+        <p>
+          Calculate your cumulative grade point average using
+          course grades and credit units.
+        </p>
+      </section>
+
+
+      <section class="tool-panel">
+
+        <h2>Enter Your Courses</h2>
+
+        <p>
+          Add each course, enter its credit units, and select
+          the grade you received.
+        </p>
+
+        <div id="course-list"></div>
+
+        <div class="button-group">
+
+          <button
+            type="button"
+            id="add-course"
+            class="btn btn-secondary"
+          >
+            + Add Course
+          </button>
+
+          <button
+            type="button"
+            id="calculate"
+            class="btn btn-primary"
+          >
+            Calculate CGPA
+          </button>
+
+          <button
+            type="button"
+            id="reset"
+            class="btn btn-outline"
+          >
+            Reset
+          </button>
+
+        </div>
+
+        <p
+          id="error"
+          class="form-error"
+          role="alert"
+          hidden
+        ></p>
+
+
+        <div
+          id="result"
+          class="result-card"
+          hidden
+        >
+
+          <h2>Your CGPA</h2>
+
+          <div
+            id="cgpa-value"
+            class="result-value"
+          >
+            0.00
+          </div>
+
+          <p id="unit-summary"></p>
+
+        </div>
+
+      </section>
+
+
+      <section class="info-section">
+
+        <h2>How CGPA Is Calculated</h2>
+
+        <p>
+          CGPA is calculated by dividing the total quality points
+          by the total credit units.
+        </p>
+
+        <p>
+          Quality points are calculated by multiplying each
+          course's credit units by its grade point.
+        </p>
+
+        <div class="table-wrapper">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>Grade</th>
+                <th>Grade Point</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>A</td>
+                <td>5</td>
+              </tr>
+
+              <tr>
+                <td>B</td>
+                <td>4</td>
+              </tr>
+
+              <tr>
+                <td>C</td>
+                <td>3</td>
+              </tr>
+
+              <tr>
+                <td>D</td>
+                <td>2</td>
+              </tr>
+
+              <tr>
+                <td>E</td>
+                <td>1</td>
+              </tr>
+
+              <tr>
+                <td>F</td>
+                <td>0</td>
+              </tr>
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </section>
+
+
+      <section class="info-section">
+
+        <h2>Frequently Asked Questions</h2>
+
+        <h3>What is the CGPA formula?</h3>
+
+        <p>
+          CGPA = Total Quality Points ÷ Total Credit Units.
+        </p>
+
+        <h3>What grading scale does this calculator use?</h3>
+
+        <p>
+          It uses the common 5-point scale: A = 5, B = 4,
+          C = 3, D = 2, E = 1, and F = 0.
+        </p>
+
+        <h3>Can I add multiple courses?</h3>
+
+        <p>
+          Yes. Use the Add Course button to include as many
+          courses as needed.
+        </p>
+
+      </section>
+
+    </div>
+
+  </main>
+
+
+  <footer class="site-footer">
+
+    <div class="container">
+
+      <div class="footer-content">
+
+        <div>
+          <h3>Student Tools Hub</h3>
+
+          <p>
+            Simple tools for everyday student life.
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <a href="../index.html">Home</a>
+          <a href="../about.html">About</a>
+          <a href="../contact.html">Contact</a>
+          <a href="../privacy.html">Privacy Policy</a>
+          <a href="../terms.html">Terms</a>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          © 2026 Student Tools Hub. All rights reserved.
+        </p>
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script type="module" src="../js/cgpa.js"></script>
+
+</body>
+</html>
