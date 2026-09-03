@@ -1,204 +1,176 @@
-import {
-  calculateWeightedGPA,
-  GRADE_POINTS
-} from "./calculations.js";
+const courseList = document.getElementById("course-list");
+const addCourseButton = document.getElementById("add-course");
+const calculateButton = document.getElementById("calculate");
+const resetButton = document.getElementById("reset");
 
-const tbody = document.querySelector("#course-rows");
-const error = document.querySelector("#error");
-const result = document.querySelector("#result");
+const errorBox = document.getElementById("error");
+const resultBox = document.getElementById("result");
+const cgpaValue = document.getElementById("cgpa-value");
+const unitSummary = document.getElementById("unit-summary");
 
-let rowId = 0;
+const GRADE_POINTS = {
+  A: 5,
+  B: 4,
+  C: 3,
+  D: 2,
+  E: 1,
+  F: 0
+};
 
-function addCourseRow(
-  courseName = "",
-  units = "",
-  grade = "A"
-) {
-  rowId++;
+let courseNumber = 0;
 
-  const tr = document.createElement("tr");
-  tr.dataset.id = rowId;
+function createCourse() {
+  courseNumber++;
 
-  const courseCell = document.createElement("td");
-  const unitsCell = document.createElement("td");
-  const gradeCell = document.createElement("td");
-  const actionCell = document.createElement("td");
+  const course = document.createElement("div");
+  course.className = "course-row";
 
-  const courseInput = document.createElement("input");
-  courseInput.type = "text";
-  courseInput.placeholder = "e.g. Mathematics";
-  courseInput.value = courseName;
-  courseInput.setAttribute(
-    "aria-label",
-    "Course name"
-  );
+  course.innerHTML = `
+    <div class="form-group">
+      <label>Course</label>
+      <input
+        type="text"
+        class="course-name"
+        placeholder="e.g. Mathematics"
+      >
+    </div>
 
-  const unitsInput = document.createElement("input");
-  unitsInput.type = "number";
-  unitsInput.min = "0.1";
-  unitsInput.step = "0.1";
-  unitsInput.inputMode = "decimal";
-  unitsInput.placeholder = "3";
-  unitsInput.value = units;
-  unitsInput.setAttribute(
-    "aria-label",
-    "Credit units"
-  );
+    <div class="form-group">
+      <label>Credit Units</label>
+      <input
+        type="number"
+        class="course-units"
+        min="1"
+        step="1"
+        inputmode="numeric"
+        placeholder="3"
+      >
+    </div>
 
-  const gradeSelect = document.createElement("select");
-  gradeSelect.setAttribute(
-    "aria-label",
-    "Grade"
-  );
+    <div class="form-group">
+      <label>Grade</label>
+      <select class="course-grade">
+        <option value="A">A — 5</option>
+        <option value="B">B — 4</option>
+        <option value="C">C — 3</option>
+        <option value="D">D — 2</option>
+        <option value="E">E — 1</option>
+        <option value="F">F — 0</option>
+      </select>
+    </div>
 
-  Object.keys(GRADE_POINTS).forEach(gradeName => {
-    const option = document.createElement("option");
+    <button
+      type="button"
+      class="button danger remove-course"
+      aria-label="Remove course"
+    >
+      Remove
+    </button>
+  `;
 
-    option.value = gradeName;
-    option.textContent =
-      `${gradeName} (${GRADE_POINTS[gradeName]})`;
-
-    if (gradeName === grade) {
-      option.selected = true;
-    }
-
-    gradeSelect.appendChild(option);
+  course.querySelector(".remove-course").addEventListener("click", () => {
+    course.remove();
+    clearResult();
   });
 
-  const removeButton =
-    document.createElement("button");
-
-  removeButton.type = "button";
-  removeButton.className =
-    "button danger";
-
-  removeButton.textContent = "Remove";
-
-  removeButton.addEventListener("click", () => {
-    tr.remove();
-    clearMessages();
-  });
-
-  courseCell.appendChild(courseInput);
-  unitsCell.appendChild(unitsInput);
-  gradeCell.appendChild(gradeSelect);
-  actionCell.appendChild(removeButton);
-
-  tr.append(
-    courseCell,
-    unitsCell,
-    gradeCell,
-    actionCell
-  );
-
-  tbody.appendChild(tr);
+  courseList.appendChild(course);
 }
 
-function clearMessages() {
-  error.hidden = true;
-  error.textContent = "";
-
-  result.hidden = true;
+function showError(message) {
+  errorBox.textContent = message;
+  errorBox.hidden = false;
+  resultBox.hidden = true;
 }
 
-function resetCalculator() {
-  tbody.replaceChildren();
-
-  addCourseRow();
-  addCourseRow();
-
-  clearMessages();
-
-  document.querySelector("#cgpa-value")
-    .textContent = "0.00";
-
-  document.querySelector("#unit-summary")
-    .textContent = "";
+function clearResult() {
+  errorBox.hidden = true;
+  errorBox.textContent = "";
+  resultBox.hidden = true;
 }
 
 function calculateCGPA() {
-  try {
-    const rows = [...tbody.rows];
+  clearResult();
 
-    if (rows.length === 0) {
-      throw new Error(
-        "Add at least one course."
-      );
+  const courses = [...document.querySelectorAll(".course-row")];
+
+  if (courses.length === 0) {
+    showError("Please add at least one course.");
+    return;
+  }
+
+  let totalUnits = 0;
+  let totalQualityPoints = 0;
+
+  for (let i = 0; i < courses.length; i++) {
+    const name = courses[i]
+      .querySelector(".course-name")
+      .value
+      .trim();
+
+    const unitsValue = courses[i]
+      .querySelector(".course-units")
+      .value;
+
+    const grade = courses[i]
+      .querySelector(".course-grade")
+      .value;
+
+    if (!name) {
+      showError(`Please enter the name for course ${i + 1}.`);
+      return;
     }
 
-    const courses = rows.map(row => {
-      const courseName =
-        row.cells[0]
-          .querySelector("input")
-          .value.trim();
+    if (unitsValue === "") {
+      showError(`Please enter the credit units for course ${i + 1}.`);
+      return;
+    }
 
-      const units =
-        row.cells[1]
-          .querySelector("input")
-          .value;
+    const units = Number(unitsValue);
 
-      const grade =
-        row.cells[2]
-          .querySelector("select")
-          .value;
+    if (!Number.isFinite(units) || units <= 0) {
+      showError(`Credit units for course ${i + 1} must be greater than 0.`);
+      return;
+    }
 
-      if (!courseName) {
-        throw new Error(
-          "Please enter a course name for every course."
-        );
-      }
+    if (!Number.isInteger(units)) {
+      showError(`Credit units for course ${i + 1} must be a whole number.`);
+      return;
+    }
 
-      return {
-        name: courseName,
-        units,
-        grade
-      };
-    });
-
-    const calculation =
-      calculateWeightedGPA(courses);
-
-    document.querySelector("#cgpa-value")
-      .textContent =
-      calculation.gpa.toFixed(2);
-
-    document.querySelector("#unit-summary")
-      .textContent =
-      `Total credit units: ${calculation.totalUnits}`;
-
-    result.hidden = false;
-    error.hidden = true;
-    error.textContent = "";
-
-  } catch (err) {
-    error.textContent =
-      err.message ||
-      "Something went wrong.";
-
-    error.hidden = false;
-    result.hidden = true;
+    totalUnits += units;
+    totalQualityPoints += units * GRADE_POINTS[grade];
   }
+
+  if (totalUnits <= 0) {
+    showError("Total credit units must be greater than zero.");
+    return;
+  }
+
+  const cgpa = totalQualityPoints / totalUnits;
+
+  cgpaValue.textContent = cgpa.toFixed(2);
+  unitSummary.textContent =
+    `Total credit units: ${totalUnits} • Quality points: ${totalQualityPoints}`;
+
+  resultBox.hidden = false;
 }
 
-document
-  .querySelector("#add-course")
-  .addEventListener(
-    "click",
-    () => addCourseRow()
-  );
+function resetCalculator() {
+  courseList.replaceChildren();
 
-document
-  .querySelector("#calculate")
-  .addEventListener(
-    "click",
-    calculateCGPA
-  );
+  courseNumber = 0;
 
-document
-  .querySelector("#reset")
-  .addEventListener(
-    "click",
-    resetCalculator
-  );
+  createCourse();
+  createCourse();
+
+  clearResult();
+
+  cgpaValue.textContent = "0.00";
+  unitSummary.textContent = "";
+}
+
+addCourseButton.addEventListener("click", createCourse);
+calculateButton.addEventListener("click", calculateCGPA);
+resetButton.addEventListener("click", resetCalculator);
 
 resetCalculator();
