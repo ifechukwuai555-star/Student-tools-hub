@@ -5,67 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Percentage Calculator | Student Tools Hub</title>
-  <meta
-    name="description"
-    content="Calculate percentages, percentage of a value, and percentage change quickly and accurately."
-  >
+  <meta name="description" content="Calculate percentages, percentage of a number, and percentage change quickly with the Student Tools Hub percentage calculator.">
 
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 
-<header class="site-header">
-  <div class="container header-inner">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html">Student Tools Hub</a>
 
-    <a class="brand" href="../index.html">
-      Student Tools Hub
-    </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#tools">Calculators</a>
+        <a href="../index.html#study-tools">Study Tools</a>
+        <a href="../index.html#about">About</a>
+      </nav>
+    </div>
+  </header>
 
-    <nav class="main-nav" aria-label="Main navigation">
-      <a href="../index.html">Home</a>
-      <a href="../index.html#calculators">Calculators</a>
-      <a href="../index.html#study-tools">Study Tools</a>
-      <a href="../about.html">About</a>
-    </nav>
+  <main class="container tool-page">
 
-  </div>
-</header>
+    <a class="back-link" href="../index.html">← Back to Student Tools Hub</a>
 
-<main class="tool-page">
-
-  <div class="container">
-
-    <a class="back-home" href="../index.html">
-      ← Back to Student Tools Hub
-    </a>
-
-    <header class="tool-header">
+    <section class="tool-hero">
+      <span class="tool-icon">%</span>
 
       <h1>Percentage Calculator</h1>
 
       <p>
         Calculate percentages, find a percentage of a value,
-        and calculate percentage change.
+        and calculate percentage changes.
       </p>
+    </section>
 
-    </header>
+    <!-- Percentage of Total -->
 
-    <section class="tool-panel">
+    <section class="calculator-card">
 
-      <h2>1. What percentage is one value of another?</h2>
+      <div class="calculator-heading">
+        <h2>What Percentage Is One Value of Another?</h2>
 
-      <p class="muted">
-        Enter a value and the total.
-      </p>
+        <p>
+          Enter a value and the total to find the percentage.
+        </p>
+      </div>
 
       <div class="form-grid">
 
         <div class="form-group">
-          <label for="basic-value">Value</label>
+          <label for="value">Value</label>
 
           <input
-            id="basic-value"
+            id="value"
             type="number"
             step="any"
             inputmode="decimal"
@@ -74,10 +67,10 @@
         </div>
 
         <div class="form-group">
-          <label for="basic-total">Total</label>
+          <label for="total">Total</label>
 
           <input
-            id="basic-total"
+            id="total"
             type="number"
             step="any"
             inputmode="decimal"
@@ -87,70 +80,122 @@
 
       </div>
 
-      <div class="form-actions">
+      <button
+        id="calculate-percentage"
+        class="button primary"
+        type="button"
+      >
+        Calculate Percentage
+      </button>
 
-        <button
-          type="button"
-          class="button"
-          id="calculate-basic"
-        >
-          Calculate Percentage
-        </button>
+      <div
+        id="percentage-result"
+        class="result-card"
+        hidden
+      >
+        <p>Percentage</p>
 
+        <strong id="percentage-value">0%</strong>
       </div>
 
-      <hr style="margin: 35px 0; border: 0; border-top: 1px solid var(--border);">
+    </section>
 
-      <h2>2. What is a percentage of a value?</h2>
+
+    <!-- Percentage Of Value -->
+
+    <section class="calculator-card">
+
+      <div class="calculator-heading">
+
+        <h2>What Is a Percentage of a Value?</h2>
+
+        <p>
+          Find a percentage of a number.
+        </p>
+
+      </div>
 
       <div class="form-grid">
 
         <div class="form-group">
-          <label for="percentage">Percentage (%)</label>
+
+          <label for="percent">
+            Percentage (%)
+          </label>
 
           <input
-            id="percentage"
+            id="percent"
             type="number"
             step="any"
             inputmode="decimal"
             placeholder="e.g. 20"
           >
+
         </div>
 
         <div class="form-group">
-          <label for="percentage-value">Value</label>
+
+          <label for="number">
+            Number
+          </label>
 
           <input
-            id="percentage-value"
+            id="number"
             type="number"
             step="any"
             inputmode="decimal"
-            placeholder="e.g. 500"
+            placeholder="e.g. 150"
           >
+
         </div>
 
       </div>
 
-      <div class="form-actions">
+      <button
+        id="calculate-of"
+        class="button primary"
+        type="button"
+      >
+        Calculate
+      </button>
 
-        <button
-          type="button"
-          class="button"
-          id="calculate-of-value"
-        >
-          Calculate
-        </button>
+      <div
+        id="of-result"
+        class="result-card"
+        hidden
+      >
+
+        <p>Result</p>
+
+        <strong id="of-value">0</strong>
 
       </div>
 
-      <hr style="margin: 35px 0; border: 0; border-top: 1px solid var(--border);">
+    </section>
 
-      <h2>3. Percentage change</h2>
+
+    <!-- Percentage Change -->
+
+    <section class="calculator-card">
+
+      <div class="calculator-heading">
+
+        <h2>Percentage Change</h2>
+
+        <p>
+          Calculate the percentage increase or decrease
+          between two values.
+        </p>
+
+      </div>
 
       <div class="form-grid">
 
         <div class="form-group">
-          <label for="old-value">Original Value</label>
+
+          <label for="old-value">
+            Original Value
+          </label>
 
           <input
             id="old-value"
@@ -159,71 +204,173 @@
             inputmode="decimal"
             placeholder="e.g. 100"
           >
+
         </div>
 
         <div class="form-group">
-          <label for="new-value">New Value</label>
+
+          <label for="new-value">
+            New Value
+          </label>
 
           <input
             id="new-value"
             type="number"
             step="any"
             inputmode="decimal"
-            placeholder="e.g. 120"
+            placeholder="e.g. 125"
           >
+
         </div>
 
       </div>
 
-      <div class="form-actions">
-
-        <button
-          type="button"
-          class="button"
-          id="calculate-change"
-        >
-          Calculate Change
-        </button>
-
-        <button
-          type="button"
-          class="button secondary"
-          id="reset"
-        >
-          Reset
-        </button>
-
-      </div>
+      <button
+        id="calculate-change"
+        class="button primary"
+        type="button"
+      >
+        Calculate Change
+      </button>
 
       <div
-        id="error"
-        class="error"
-        role="alert"
-        hidden
-      ></div>
-
-      <div
-        id="result"
-        class="result"
-        aria-live="polite"
+        id="change-result"
+        class="result-card"
         hidden
       >
 
-        <div class="muted">
-          Result
-        </div>
+        <p>Percentage Change</p>
 
-        <div
-          id="percentage-result"
-          class="result-value"
-        >
-          0.00
-        </div>
+        <strong id="change-value">0%</strong>
 
       </div>
 
     </section>
 
-    <section class="info-box">
 
-      <h2>How percentage calculations work</h2
+    <div
+      id="error"
+      class="message error-message"
+      hidden
+    ></div>
+
+
+    <div class="calculator-actions">
+
+      <button
+        id="reset"
+        class="button danger"
+        type="button"
+      >
+        Reset All
+      </button>
+
+    </div>
+
+
+    <section class="info-section">
+
+      <h2>How Percentage Calculations Work</h2>
+
+      <p>
+        To find what percentage one value is of another,
+        divide the value by the total and multiply by 100.
+      </p>
+
+      <div class="formula-box">
+        <strong>
+          Percentage = (Value ÷ Total) × 100
+        </strong>
+      </div>
+
+      <p>
+        To find a percentage of a number, multiply the
+        percentage by the number and divide by 100.
+      </p>
+
+      <div class="formula-box">
+        <strong>
+          Percentage of a Value = (Percentage ÷ 100) × Value
+        </strong>
+      </div>
+
+    </section>
+
+
+    <section class="info-section">
+
+      <h2>Frequently Asked Questions</h2>
+
+      <details>
+
+        <summary>
+          Can I calculate a percentage increase?
+        </summary>
+
+        <p>
+          Yes. Enter the original value and the new value
+          in the Percentage Change calculator.
+        </p>
+
+      </details>
+
+      <details>
+
+        <summary>
+          What happens if the total is zero?
+        </summary>
+
+        <p>
+          The calculator will show an error instead of
+          attempting an invalid division by zero.
+        </p>
+
+      </details>
+
+      <details>
+
+        <summary>
+          Can I use decimal numbers?
+        </summary>
+
+        <p>
+          Yes. Decimal values are supported.
+        </p>
+
+      </details>
+
+    </section>
+
+  </main>
+
+
+  <footer class="site-footer">
+
+    <div class="container">
+
+      <p>© 2026 Student Tools Hub</p>
+
+      <div class="footer-links">
+
+        <a href="../index.html#about">About</a>
+
+        <a href="../index.html#contact">Contact</a>
+
+        <a href="../index.html#privacy">Privacy Policy</a>
+
+        <a href="../index.html#terms">Terms</a>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <script
+    type="module"
+    src="../percentage.js"
+  ></script>
+
+</body>
+</html>
