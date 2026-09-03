@@ -5,227 +5,155 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>CGPA Calculator | Student Tools Hub</title>
-  <meta
-    name="description"
-    content="Calculate your CGPA using a 5-point grading scale with course credit units and grades."
-  >
+  <meta name="description" content="Calculate your CGPA quickly using the Nigerian 5-point grading scale. Add courses, credit units and grades to get your weighted CGPA.">
 
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 
-<header class="site-header">
-  <div class="container header-inner">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html">Student Tools Hub</a>
 
-    <a class="brand" href="../index.html">
-      Student Tools Hub
-    </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#tools">Calculators</a>
+        <a href="../index.html#study-tools">Study Tools</a>
+        <a href="../index.html#about">About</a>
+      </nav>
+    </div>
+  </header>
 
-    <nav class="main-nav" aria-label="Main navigation">
-      <a href="../index.html">Home</a>
-      <a href="../index.html#calculators">Calculators</a>
-      <a href="../index.html#study-tools">Study Tools</a>
-      <a href="../about.html">About</a>
-    </nav>
+  <main class="container tool-page">
 
-  </div>
-</header>
+    <a class="back-link" href="../index.html">← Back to Student Tools Hub</a>
 
-<main class="tool-page">
-  <div class="container">
-
-    <a class="back-home" href="../index.html">
-      ← Back to Student Tools Hub
-    </a>
-
-    <header class="tool-header">
+    <section class="tool-hero">
+      <span class="tool-icon">🎓</span>
       <h1>CGPA Calculator</h1>
-
       <p>
-        Calculate your cumulative grade point average using
-        course grades and credit units.
+        Calculate your weighted Cumulative Grade Point Average
+        using the standard 5-point grading scale.
       </p>
-    </header>
+    </section>
 
-    <section class="tool-panel" aria-labelledby="calculator-heading">
+    <section class="calculator-card">
 
-      <h2 id="calculator-heading">Enter your courses</h2>
-
-      <p class="muted">
-        The default grading scale is the common 5-point scale:
-        A = 5, B = 4, C = 3, D = 2, E = 1, F = 0.
-      </p>
-
-      <div class="table-wrapper">
-
-        <table>
-          <thead>
-            <tr>
-              <th>Course</th>
-              <th>Credit Units</th>
-              <th>Grade</th>
-              <th>Action</th>
-            </tr>
-          </thead>
-
-          <tbody id="course-rows"></tbody>
-        </table>
-
+      <div class="calculator-heading">
+        <h2>Enter Your Courses</h2>
+        <p>
+          Add each course, enter its credit units and select your grade.
+        </p>
       </div>
 
-      <div class="form-actions">
+      <div id="course-list" class="course-list"></div>
 
-        <button
-          type="button"
-          class="button secondary"
-          id="add-course"
-        >
+      <div class="calculator-actions">
+        <button id="add-course" class="button secondary" type="button">
           + Add Course
         </button>
 
-        <button
-          type="button"
-          class="button"
-          id="calculate"
-        >
+        <button id="calculate" class="button primary" type="button">
           Calculate CGPA
         </button>
 
-        <button
-          type="button"
-          class="button secondary"
-          id="reset"
-        >
+        <button id="reset" class="button danger" type="button">
           Reset
         </button>
-
       </div>
 
-      <div
-        id="error"
-        class="error"
-        role="alert"
-        hidden
-      ></div>
+      <div id="error" class="message error-message" hidden></div>
 
-      <div
-        id="result"
-        class="result"
-        aria-live="polite"
-        hidden
-      >
-
-        <div class="muted">Your CGPA</div>
-
-        <div
-          id="cgpa-value"
-          class="result-value"
-        >
-          0.00
-        </div>
-
-        <div
-          id="unit-summary"
-          class="muted"
-        ></div>
-
+      <div id="result" class="result-card" hidden>
+        <p>Your CGPA</p>
+        <strong id="cgpa-value">0.00</strong>
+        <span id="unit-summary"></span>
       </div>
 
     </section>
 
-    <section class="info-box">
-
-      <h2>How the CGPA calculation works</h2>
+    <section class="info-section">
+      <h2>How CGPA is calculated</h2>
 
       <p>
-        Each course contributes points based on its grade and
-        credit units.
+        CGPA is calculated by multiplying each course's grade point
+        by its credit units, adding all the quality points together,
+        and dividing by the total credit units.
       </p>
 
-      <p>
+      <div class="formula-box">
         <strong>CGPA = Total Quality Points ÷ Total Credit Units</strong>
-      </p>
+      </div>
 
-      <p>
-        For example, a 3-unit course with an A contributes
-        3 × 5 = 15 quality points.
-      </p>
+      <h3>5-Point Grading Scale</h3>
 
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Grade</th>
+              <th>Grade Point</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr><td>A</td><td>5</td></tr>
+            <tr><td>B</td><td>4</td></tr>
+            <tr><td>C</td><td>3</td></tr>
+            <tr><td>D</td><td>2</td></tr>
+            <tr><td>E</td><td>1</td></tr>
+            <tr><td>F</td><td>0</td></tr>
+          </tbody>
+        </table>
+      </div>
     </section>
 
-    <section class="faq">
-
+    <section class="info-section">
       <h2>Frequently Asked Questions</h2>
 
       <details>
-        <summary>What grading scale does this calculator use?</summary>
-
+        <summary>How is CGPA different from GPA?</summary>
         <p>
-          It uses a 5-point scale by default:
-          A = 5, B = 4, C = 3, D = 2, E = 1 and F = 0.
+          GPA normally represents performance for a particular
+          semester or period, while CGPA represents your cumulative
+          performance across multiple semesters.
         </p>
       </details>
 
       <details>
         <summary>Can I add multiple courses?</summary>
-
         <p>
-          Yes. Use the Add Course button to add as many
-          courses as you need.
+          Yes. Use the Add Course button to add as many courses as
+          you need.
         </p>
       </details>
 
       <details>
-        <summary>Does credit unit affect CGPA?</summary>
-
+        <summary>What grading scale does this calculator use?</summary>
         <p>
-          Yes. Courses with more credit units have a larger
-          effect on the calculated result.
+          The default scale is A = 5, B = 4, C = 3, D = 2,
+          E = 1 and F = 0.
         </p>
       </details>
-
     </section>
 
-  </div>
-</main>
+  </main>
 
-<footer class="site-footer">
-
-  <div class="container">
-
-    <div class="footer-inner">
-
-      <div>
-        <div class="footer-brand">
-          Student Tools Hub
-        </div>
-
-        <p class="footer-text">
-          Free, simple calculators and study tools for
-          students.
-        </p>
-      </div>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© 2026 Student Tools Hub</p>
 
       <div class="footer-links">
-        <a href="../index.html">Home</a>
-        <a href="../about.html">About</a>
-        <a href="../contact.html">Contact</a>
-        <a href="../privacy.html">Privacy Policy</a>
-        <a href="../terms.html">Terms of Use</a>
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="../index.html#privacy">Privacy Policy</a>
+        <a href="../index.html#terms">Terms</a>
       </div>
-
     </div>
+  </footer>
 
-    <div class="footer-bottom">
-      © 2026 Student Tools Hub. All rights reserved.
-    </div>
-
-  </div>
-
-</footer>
-
-<script type="module" src="../js/cgpa.js"></script>
+  <script type="module" src="../cgpa.js"></script>
 
 </body>
 </html>
