@@ -5,94 +5,94 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Grade Calculator | Student Tools Hub</title>
-  <meta
-    name="description"
-    content="Convert a score from 0 to 100 into a grade using an editable grading scale."
-  >
+  <meta name="description" content="Convert a test or exam score into a grade using an editable grading scale with Student Tools Hub.">
 
   <link rel="stylesheet" href="../css/style.css">
 </head>
 
 <body>
 
-<header class="site-header">
-  <div class="container header-inner">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="../index.html">Student Tools Hub</a>
 
-    <a class="brand" href="../index.html">
-      Student Tools Hub
-    </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="../index.html">Home</a>
+        <a href="../index.html#tools">Calculators</a>
+        <a href="../index.html#study-tools">Study Tools</a>
+        <a href="../index.html#about">About</a>
+      </nav>
+    </div>
+  </header>
 
-    <nav class="main-nav" aria-label="Main navigation">
-      <a href="../index.html">Home</a>
-      <a href="../index.html#calculators">Calculators</a>
-      <a href="../index.html#study-tools">Study Tools</a>
-      <a href="../about.html">About</a>
-    </nav>
+  <main class="container tool-page">
 
-  </div>
-</header>
+    <a class="back-link" href="../index.html">← Back to Student Tools Hub</a>
 
-<main class="tool-page">
-
-  <div class="container">
-
-    <a class="back-home" href="../index.html">
-      ← Back to Student Tools Hub
-    </a>
-
-    <header class="tool-header">
+    <section class="tool-hero">
+      <span class="tool-icon">🏆</span>
 
       <h1>Grade Calculator</h1>
 
       <p>
-        Enter a score from 0 to 100 and find its grade.
-        You can also edit the grading scale.
+        Enter a score from 0 to 100 to find the corresponding
+        grade. You can also edit the grading scale.
       </p>
+    </section>
 
-    </header>
+    <section class="calculator-card">
 
-    <section class="tool-panel">
-
-      <h2>Enter your score</h2>
+      <div class="calculator-heading">
+        <h2>Enter Your Score</h2>
+        <p>Use a score between 0 and 100.</p>
+      </div>
 
       <div class="form-group">
-
-        <label for="score">
-          Score (0–100)
-        </label>
+        <label for="score">Score (%)</label>
 
         <input
           id="score"
           type="number"
           min="0"
           max="100"
-          step="any"
+          step="0.01"
           inputmode="decimal"
-          placeholder="e.g. 78"
+          placeholder="e.g. 75"
         >
-
       </div>
 
-      <div class="form-actions">
+      <button
+        id="calculate-grade"
+        class="button primary"
+        type="button"
+      >
+        Calculate Grade
+      </button>
 
-        <button
-          type="button"
-          class="button"
-          id="calculate"
-        >
-          Calculate Grade
-        </button>
+      <div
+        id="grade-result"
+        class="result-card"
+        hidden
+      >
+        <p>Your Grade</p>
 
+        <strong id="grade-value">—</strong>
+
+        <span id="grade-point"></span>
       </div>
 
-      <hr style="margin: 35px 0; border: 0; border-top: 1px solid var(--border);">
+    </section>
 
-      <h2>Grading Scale</h2>
+    <section class="calculator-card">
 
-      <p class="muted">
-        Each minimum score determines when that grade starts.
-        The scale is editable.
-      </p>
+      <div class="calculator-heading">
+        <h2>Editable Grading Scale</h2>
+
+        <p>
+          Change the minimum score for each grade if your school
+          uses a different grading system.
+        </p>
+      </div>
 
       <div class="table-wrapper">
 
@@ -102,175 +102,192 @@
             <tr>
               <th>Grade</th>
               <th>Minimum Score</th>
-              <th>Action</th>
             </tr>
           </thead>
 
-          <tbody id="scale-rows"></tbody>
+          <tbody>
+
+            <tr>
+              <td><strong>A</strong></td>
+              <td>
+                <input
+                  class="min-score"
+                  data-grade="A"
+                  type="number"
+                  min="0"
+                  max="100"
+                  value="70"
+                >
+              </td>
+            </tr>
+
+            <tr>
+              <td><strong>B</strong></td>
+              <td>
+                <input
+                  class="min-score"
+                  data-grade="B"
+                  type="number"
+                  min="0"
+                  max="100"
+                  value="60"
+                >
+              </td>
+            </tr>
+
+            <tr>
+              <td><strong>C</strong></td>
+              <td>
+                <input
+                  class="min-score"
+                  data-grade="C"
+                  type="number"
+                  min="0"
+                  max="100"
+                  value="50"
+                >
+              </td>
+            </tr>
+
+            <tr>
+              <td><strong>D</strong></td>
+              <td>
+                <input
+                  class="min-score"
+                  data-grade="D"
+                  type="number"
+                  min="0"
+                  max="100"
+                  value="45"
+                >
+              </td>
+            </tr>
+
+            <tr>
+              <td><strong>E</strong></td>
+              <td>
+                <input
+                  class="min-score"
+                  data-grade="E"
+                  type="number"
+                  min="0"
+                  max="100"
+                  value="40"
+                >
+              </td>
+            </tr>
+
+            <tr>
+              <td><strong>F</strong></td>
+              <td>
+                <input
+                  class="min-score"
+                  data-grade="F"
+                  type="number"
+                  min="0"
+                  max="100"
+                  value="0"
+                >
+              </td>
+            </tr>
+
+          </tbody>
 
         </table>
 
       </div>
 
-      <div class="form-actions">
-
-        <button
-          type="button"
-          class="button secondary"
-          id="add-grade"
-        >
-          + Add Grade
-        </button>
-
-        <button
-          type="button"
-          class="button secondary"
-          id="reset-scale"
-        >
-          Reset Scale
-        </button>
-
-      </div>
-
-      <div
-        id="error"
-        class="error"
-        role="alert"
-        hidden
-      ></div>
-
-      <div
-        id="result"
-        class="result"
-        aria-live="polite"
-        hidden
+      <button
+        id="reset-scale"
+        class="button secondary"
+        type="button"
       >
+        Reset Grading Scale
+      </button>
 
-        <div class="muted">
-          Your Grade
-        </div>
+    </section>
 
-        <div
-          id="grade-result"
-          class="result-value"
-        >
-          —
-        </div>
+    <div
+      id="error"
+      class="message error-message"
+      hidden
+    ></div>
 
-        <div
-          id="score-summary"
-          class="muted"
-        ></div>
+    <section class="info-section">
 
+      <h2>How It Works</h2>
+
+      <p>
+        Enter your score and the calculator compares it with
+        the minimum scores in the grading scale. The highest
+        matching grade is returned.
+      </p>
+
+      <h3>Default Scale</h3>
+
+      <div class="formula-box">
+        <strong>
+          A = 70–100 &nbsp; B = 60–69 &nbsp;
+          C = 50–59 &nbsp; D = 45–49 &nbsp;
+          E = 40–44 &nbsp; F = 0–39
+        </strong>
       </div>
 
     </section>
 
-    <section class="info-box">
-
-      <h2>How it works</h2>
-
-      <p>
-        The calculator compares your score with the minimum
-        score for each grade, starting with the highest
-        threshold.
-      </p>
-
-      <p>
-        The default scale is:
-        A = 70–100, B = 60–69, C = 50–59,
-        D = 45–49, E = 40–44, F = 0–39.
-      </p>
-
-      <p>
-        You can edit the minimum scores or grade labels to
-        match another grading system.
-      </p>
-
-    </section>
-
-    <section class="faq">
+    <section class="info-section">
 
       <h2>Frequently Asked Questions</h2>
 
       <details>
-        <summary>
-          What score range does the calculator accept?
-        </summary>
+        <summary>Can I change the grading scale?</summary>
 
         <p>
-          Scores from 0 through 100 are accepted.
+          Yes. Change the minimum score for each grade to match
+          the grading system you want to use.
         </p>
       </details>
 
       <details>
-        <summary>
-          Can I change the grading scale?
-        </summary>
+        <summary>What scores are accepted?</summary>
 
         <p>
-          Yes. Edit the grade labels and minimum scores in
-          the grading scale table.
+          Scores from 0 to 100 are accepted, including decimal
+          scores such as 72.5.
         </p>
       </details>
 
       <details>
-        <summary>
-          What happens if two grades have the same minimum?
-        </summary>
+        <summary>What happens if I enter an invalid score?</summary>
 
         <p>
-          The calculator will show an error and ask you to
-          use different minimum scores.
+          The calculator will show an error instead of producing
+          an incorrect grade.
         </p>
       </details>
 
     </section>
 
-  </div>
+  </main>
 
-</main>
+  <footer class="site-footer">
 
-<footer class="site-footer">
+    <div class="container">
 
-  <div class="container">
-
-    <div class="footer-inner">
-
-      <div>
-
-        <div class="footer-brand">
-          Student Tools Hub
-        </div>
-
-        <p class="footer-text">
-          Free, simple calculators and study tools for
-          students.
-        </p>
-
-      </div>
+      <p>© 2026 Student Tools Hub</p>
 
       <div class="footer-links">
-
-        <a href="../index.html">Home</a>
-        <a href="../about.html">About</a>
-        <a href="../contact.html">Contact</a>
-        <a href="../privacy.html">Privacy Policy</a>
-        <a href="../terms.html">Terms of Use</a>
-
+        <a href="../index.html#about">About</a>
+        <a href="../index.html#contact">Contact</a>
+        <a href="../index.html#privacy">Privacy Policy</a>
+        <a href="../index.html#terms">Terms</a>
       </div>
 
     </div>
 
-    <div class="footer-bottom">
-      © 2026 Student Tools Hub. All rights reserved.
-    </div>
+  </footer>
 
-  </div>
-
-</footer>
-
-<script type="module" src="../js/grade.js"></script>
+  <script type="module" src="../grade.js"></script>
 
 </body>
 </html>
