@@ -2,69 +2,65 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Student Tools Hub | Free Student Calculators</title>
+  <title>Student Tools Hub | Free Student Calculators & Study Tools</title>
 
   <meta
     name="description"
-    content="Student Tools Hub provides free, simple calculators and study tools for secondary-school and university students."
+    content="Student Tools Hub provides simple calculators and study tools for students, including CGPA, GPA, percentage, grade, exam countdown, and date calculators."
   >
 
-  <meta name="theme-color" content="#16a34a">
+  <meta
+    name="keywords"
+    content="student tools, CGPA calculator, GPA calculator, percentage calculator, grade calculator, exam countdown, date calculator"
+  >
+
+  <meta name="theme-color" content="#2563eb">
 
   <link rel="stylesheet" href="css/style.css">
-  <script type="module" src="js/main.js"></script>
 </head>
 
 <body>
 
-  <!-- ================= HEADER ================= -->
-
+  <!-- HEADER -->
   <header class="site-header">
-    <div class="container nav-container">
+    <div class="nav-container">
+      <div class="header-inner">
 
-      <a href="index.html" class="logo">
-        Student Tools Hub
-      </a>
+        <a href="index.html" class="site-logo">
+          Student Tools Hub
+        </a>
 
-      <nav class="main-nav" aria-label="Main navigation">
-        <a href="index.html">Home</a>
-        <a href="#calculators">Calculators</a>
-        <a href="#study-tools">Study Tools</a>
-        <a href="about.html">About</a>
-      </nav>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="index.html">Home</a>
+          <a href="#tools">Calculators</a>
+          <a href="#study-tools">Study Tools</a>
+          <a href="#about">About</a>
+        </nav>
 
+      </div>
     </div>
   </header>
 
 
-  <!-- ================= MAIN ================= -->
-
+  <!-- HERO -->
   <main>
 
-    <!-- HERO -->
-
     <section class="hero">
+      <div class="container">
 
-      <div class="container hero-content">
+        <span class="hero-badge">🎓 Built for Students</span>
 
-        <span class="eyebrow">
-          FREE STUDENT TOOLS
-        </span>
-
-        <h1>
-          Student Tools Hub
-        </h1>
+        <h1>Student Tools Hub</h1>
 
         <p>
           Free, simple tools that make student life easier.
         </p>
 
         <!-- SEARCH -->
-
-        <div class="search-wrapper">
-
+        <div class="search-box">
           <label for="tool-search" class="sr-only">
             Search for a tool
           </label>
@@ -75,346 +71,300 @@
             placeholder="Search for a tool…"
             autocomplete="off"
           >
-
         </div>
 
       </div>
-
     </section>
 
 
-    <!-- ================= CALCULATORS ================= -->
-
-    <section class="section" id="calculators">
-
+    <!-- CALCULATORS -->
+    <section id="tools" class="tools-section">
       <div class="container">
 
         <div class="section-heading">
-
-          <div>
-            <span class="eyebrow">
-              CALCULATORS
-            </span>
-
-            <h2>
-              Choose a tool
-            </h2>
-          </div>
-
-          <p
-            id="search-status"
-            class="muted"
-            aria-live="polite"
-          ></p>
-
+          <h2>Student Calculators</h2>
+          <p>
+            Choose a tool below to get started.
+          </p>
         </div>
 
-
-        <div
-          class="tool-grid"
-          id="tool-grid"
-        >
+        <div class="tools-grid" id="tools-grid">
 
           <!-- CGPA -->
+          <article class="tool-card" data-tool="cgpa calculator">
+            <div class="tool-icon">🎓</div>
 
-          <a
-            href="calculators/cgpa.html"
-            class="tool-card"
-            data-tool="cgpa calculator grade point credit units university"
-          >
-
-            <div class="tool-icon">
-              🧮
-            </div>
-
-            <h3>
-              CGPA Calculator
-            </h3>
+            <h3>CGPA Calculator</h3>
 
             <p>
-              Calculate your weighted CGPA using a 5-point grading scale.
+              Calculate your cumulative grade point average using
+              course grades and credit units.
             </p>
 
-            <span class="card-link">
-              Open Tool →
-            </span>
-
-          </a>
+            <a
+              href="calculators/cgpa.html"
+              class="btn btn-primary"
+            >
+              Open Tool
+            </a>
+          </article>
 
 
           <!-- GPA -->
+          <article class="tool-card" data-tool="gpa calculator">
+            <div class="tool-icon">📚</div>
 
-          <a
-            href="calculators/gpa.html"
-            class="tool-card"
-            data-tool="gpa calculator semester grade point credit units"
-          >
-
-            <div class="tool-icon">
-              📊
-            </div>
-
-            <h3>
-              GPA Calculator
-            </h3>
+            <h3>GPA Calculator</h3>
 
             <p>
-              Calculate your GPA for a semester or study period.
+              Calculate your GPA from your course grades and
+              credit units.
             </p>
 
-            <span class="card-link">
-              Open Tool →
-            </span>
+            <a
+              href="calculators/gpa.html"
+              class="btn btn-primary"
+            >
+              Open Tool
+            </a>
+          </article>
 
-          </a>
 
+          <!-- PERCENTAGE -->
+          <article class="tool-card" data-tool="percentage calculator">
+            <div class="tool-icon">📊</div>
 
-          <!-- Percentage -->
-
-          <a
-            href="calculators/percentage.html"
-            class="tool-card"
-            data-tool="percentage calculator percent value total change"
-          >
-
-            <div class="tool-icon">
-              ％
-            </div>
-
-            <h3>
-              Percentage Calculator
-            </h3>
+            <h3>Percentage Calculator</h3>
 
             <p>
-              Calculate percentages, percentage-of-value and percentage change.
+              Find percentages, calculate a percentage of a value,
+              and calculate percentage change.
             </p>
 
-            <span class="card-link">
-              Open Tool →
-            </span>
+            <a
+              href="calculators/percentage.html"
+              class="btn btn-primary"
+            >
+              Open Tool
+            </a>
+          </article>
 
-          </a>
 
+          <!-- GRADE -->
+          <article class="tool-card" data-tool="grade calculator">
+            <div class="tool-icon">📝</div>
 
-          <!-- Grade -->
-
-          <a
-            href="calculators/grade.html"
-            class="tool-card"
-            data-tool="grade calculator score marks grading scale"
-          >
-
-            <div class="tool-icon">
-              📝
-            </div>
-
-            <h3>
-              Grade Calculator
-            </h3>
+            <h3>Grade Calculator</h3>
 
             <p>
-              Convert scores into grades using an editable grading scale.
+              Convert a score into a letter grade using an
+              adjustable grading scale.
             </p>
 
-            <span class="card-link">
-              Open Tool →
-            </span>
+            <a
+              href="calculators/grade.html"
+              class="btn btn-primary"
+            >
+              Open Tool
+            </a>
+          </article>
 
-          </a>
 
+          <!-- EXAM COUNTDOWN -->
+          <article class="tool-card" data-tool="exam countdown exam timer study">
+            <div class="tool-icon">⏳</div>
 
-          <!-- Exam Countdown -->
-
-          <a
-            href="calculators/exam-countdown.html"
-            class="tool-card"
-            data-tool="exam countdown timer date time"
-          >
-
-            <div class="tool-icon">
-              ⏱️
-            </div>
-
-            <h3>
-              Exam Countdown
-            </h3>
+            <h3>Exam Countdown</h3>
 
             <p>
-              Count down to your exam date and time.
+              Count down the days, hours, minutes, and seconds
+              until your next exam.
             </p>
 
-            <span class="card-link">
-              Open Tool →
-            </span>
+            <a
+              href="calculators/exam-countdown.html"
+              class="btn btn-primary"
+            >
+              Open Tool
+            </a>
+          </article>
 
-          </a>
 
+          <!-- DATE CALCULATOR -->
+          <article class="tool-card" data-tool="date calculator dates days">
+            <div class="tool-icon">📅</div>
 
-          <!-- Date Calculator -->
-
-          <a
-            href="calculators/date-calculator.html"
-            class="tool-card"
-            data-tool="date calculator date difference add subtract days leap year"
-          >
-
-            <div class="tool-icon">
-              📅
-            </div>
-
-            <h3>
-              Date Calculator
-            </h3>
+            <h3>Date Calculator</h3>
 
             <p>
-              Find date differences or add and subtract days.
+              Calculate the difference between dates or add and
+              subtract days from a date.
             </p>
 
-            <span class="card-link">
-              Open Tool →
-            </span>
-
-          </a>
+            <a
+              href="calculators/date-calculator.html"
+              class="btn btn-primary"
+            >
+              Open Tool
+            </a>
+          </article>
 
         </div>
 
-
-        <!-- NO SEARCH RESULTS -->
-
-        <p
-          id="no-results"
-          class="empty-state"
-          hidden
-        >
-          No tools match your search.
+        <p id="no-results" class="no-results" hidden>
+          No tools found. Try another search.
         </p>
 
       </div>
-
     </section>
 
 
-    <!-- ================= STUDY TOOLS ================= -->
+    <!-- STUDY TOOLS -->
+    <section id="study-tools" class="info-section">
+      <div class="container">
 
-    <section
-      class="section section-alt"
-      id="study-tools"
-    >
+        <div class="section-heading">
+          <h2>Study Tools</h2>
 
-      <div class="container narrow">
+          <p>
+            Use Student Tools Hub to quickly calculate grades,
+            plan around exams, and work with important dates.
+          </p>
+        </div>
 
-        <span class="eyebrow">
-          STUDY TOOLS
-        </span>
+        <div class="info-grid">
 
-        <h2>
-          Simple tools. Clear results.
-        </h2>
+          <div class="info-card">
+            <div class="tool-icon">⚡</div>
 
-        <p>
-          Student Tools Hub keeps everyday academic calculations
-          straightforward and easy to use on phones, tablets and computers.
-        </p>
+            <h3>Quick & Simple</h3>
 
-
-        <div class="trust-grid">
-
-          <div class="trust-card">
-
-            <strong>
-              ✓ Free to use
-            </strong>
-
-            <span>
-              No paid calculator features.
-            </span>
-
+            <p>
+              Enter your information and get your result without
+              complicated steps.
+            </p>
           </div>
 
 
-          <div class="trust-card">
+          <div class="info-card">
+            <div class="tool-icon">📱</div>
 
-            <strong>
-              ✓ No sign-up
-            </strong>
+            <h3>Mobile Friendly</h3>
 
-            <span>
-              Open a tool and start calculating.
-            </span>
-
+            <p>
+              Designed to work comfortably on phones, tablets,
+              and computers.
+            </p>
           </div>
 
 
-          <div class="trust-card">
+          <div class="info-card">
+            <div class="tool-icon">🧮</div>
 
-            <strong>
-              ✓ Mobile-friendly
-            </strong>
+            <h3>Useful Calculations</h3>
 
-            <span>
-              Designed for phones, tablets and desktops.
-            </span>
-
+            <p>
+              Access common academic calculations from one place.
+            </p>
           </div>
 
         </div>
 
       </div>
+    </section>
 
+
+    <!-- ABOUT -->
+    <section id="about" class="info-section">
+      <div class="container">
+
+        <div class="section-heading">
+          <h2>About Student Tools Hub</h2>
+
+          <p>
+            Student Tools Hub is a collection of straightforward
+            calculators and study tools designed to help students
+            handle everyday academic calculations.
+          </p>
+        </div>
+
+      </div>
     </section>
 
   </main>
 
 
-  <!-- ================= FOOTER ================= -->
-
+  <!-- FOOTER -->
   <footer class="site-footer">
 
-    <div class="container footer-grid">
+    <div class="container">
 
-      <div>
+      <div class="footer-content">
 
-        <strong>
-          Student Tools Hub
-        </strong>
+        <div>
+          <h3>Student Tools Hub</h3>
+
+          <p>
+            Simple tools for everyday student life.
+          </p>
+        </div>
+
+
+        <div class="footer-links">
+
+          <a href="index.html">Home</a>
+
+          <a href="#about">About</a>
+
+          <a href="mailto:contact@studenttoolshub.example">
+            Contact
+          </a>
+
+          <a href="#privacy">Privacy Policy</a>
+
+          <a href="#terms">Terms</a>
+
+        </div>
+
+      </div>
+
+
+      <!-- Privacy / Terms -->
+      <div id="privacy" class="footer-note">
+        <h4>Privacy Policy</h4>
 
         <p>
-          Simple calculators and study tools for students.
+          Please review how this website handles information
+          before using any tool.
+        </p>
+      </div>
+
+
+      <div id="terms" class="footer-note">
+        <h4>Terms</h4>
+
+        <p>
+          These tools are provided for general educational and
+          calculation purposes.
+        </p>
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <p>
+          © 2026 Student Tools Hub. All rights reserved.
         </p>
 
       </div>
-
-
-      <div class="footer-links">
-
-        <a href="about.html">
-          About
-        </a>
-
-        <a href="contact.html">
-          Contact
-        </a>
-
-        <a href="privacy.html">
-          Privacy Policy
-        </a>
-
-        <a href="terms.html">
-          Terms of Use
-        </a>
-
-      </div>
-
-    </div>
-
-
-    <div class="container copyright">
-
-      © 2026 Student Tools Hub
 
     </div>
 
   </footer>
 
+
+  <!-- HOMEPAGE JAVASCRIPT -->
+  <script src="main.js"></script>
+
 </body>
-</html>
+</html>>
